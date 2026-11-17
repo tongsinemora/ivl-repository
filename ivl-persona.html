@@ -1,0 +1,3157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f3ea">
+<meta name="description" content="IVL PERSONA · 赛场人格档案：15 道情境题，从破译、牵制、救援、辅助、控场五个维度，生成你的专属赛场人格报告。原创娱乐性自评，非官方、非心理诊断。">
+<title>IVL PERSONA · 你的赛场人格是哪一种选手？</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2048%2048'%3E%3Crect%20width='48'%20height='48'%20rx='8'%20fill='%23f7f3ea'/%3E%3Cpath%20d='M24%206%2042%2024%2024%2042%206%2024Z'%20fill='none'%20stroke='%237c5a22'%20stroke-width='1.6'/%3E%3Cpath%20d='M17.5%2019.5%2024%2029l6.5-9.5'%20fill='none'%20stroke='%23b08a45'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+/* =========================================================
+   IVL PERSONA — a self-contained, offline-ready personality test
+   Palette: ivory, ink, antique gold. Original visual system.
+   ========================================================= */
+:root{
+  --paper:#f7f3ea;
+  --paper-2:#f1eadc;
+  --white:#fffdf8;
+  --ink:#181510;
+  --ink-2:#302b22;
+  --ink-soft:#544d40;
+  --muted:#837967;
+  --muted-2:#a09582;
+  --gold:#b08a45;
+  --gold-deep:#7c5a22;
+  --gold-light:#dfc58d;
+  --gold-pale:#efe2c5;
+  --line:rgba(124,90,34,.18);
+  --line-strong:rgba(124,90,34,.34);
+  --shadow:0 24px 70px rgba(77,56,20,.10);
+  --shadow-soft:0 14px 36px rgba(77,56,20,.07);
+  --serif:"Noto Serif SC","STSong","Songti SC","SimSun",Georgia,serif;
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --latin:"Georgia","Times New Roman",var(--serif);
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --head-h:78px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-width:320px;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.75;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 42% at 77% 9%,rgba(223,197,141,.18),transparent 68%),
+    radial-gradient(ellipse 48% 40% at 6% 56%,rgba(223,197,141,.11),transparent 70%),
+    linear-gradient(180deg,rgba(255,255,255,.28),transparent 24%);
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+::selection{background:var(--gold-light);color:var(--ink)}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+p,h1,h2,h3,h4,blockquote,figure{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:4px}
+svg.icon{width:1.5em;height:1.5em;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.svg-sprite{position:absolute;width:0;height:0;overflow:hidden}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.container{
+  width:min(1200px,calc(100% - clamp(40px,8vw,112px)));
+  margin-inline:auto;
+  position:relative;
+  z-index:2;
+}
+.screen{position:relative;z-index:1}
+.section{padding:clamp(72px,9vw,128px) 0;position:relative}
+#premise,#method,#dimensions,#atlas{scroll-margin-top:calc(var(--head-h) + 26px)}
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:0;
+  font-family:var(--latin);
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:.28em;
+  color:var(--gold-deep);
+  text-transform:uppercase;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);flex:none;opacity:.8}
+.eyebrow.no-line::before{display:none}
+.gold-text{
+  background:linear-gradient(110deg,#8d6829 0%,#c7a35d 45%,#8d6829 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hairline{width:100%;height:1px;background:var(--line)}
+
+/* ---------- Header ---------- */
+.site-head{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:60;
+  padding:20px 0;
+  transition:padding .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.site-head::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(247,243,234,.9),rgba(247,243,234,0));
+  pointer-events:none;
+  transition:opacity .35s var(--ease);
+}
+.site-head.is-scrolled,
+body[data-screen="quiz"] .site-head,
+body[data-screen="result"] .site-head{
+  padding:12px 0;
+  background:rgba(247,243,234,.88);
+  backdrop-filter:blur(18px) saturate(120%);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);
+  border-bottom-color:var(--line);
+  box-shadow:0 10px 40px rgba(77,56,20,.05);
+}
+body[data-screen="quiz"] .site-head::before,
+body[data-screen="result"] .site-head::before{opacity:0}
+.head-inner{display:flex;align-items:center;justify-content:space-between;gap:26px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:38px;height:38px;color:var(--gold-deep);flex:none}
+.brand-text strong{
+  display:block;
+  font-family:var(--latin);
+  font-size:12px;
+  line-height:1.2;
+  letter-spacing:.24em;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.brand-text small{
+  display:block;
+  margin-top:4px;
+  font-size:9px;
+  line-height:1.2;
+  letter-spacing:.28em;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.nav{display:flex;align-items:center;gap:clamp(20px,3vw,38px)}
+.nav a{position:relative;font-size:12.5px;letter-spacing:.1em;color:var(--ink-soft);padding:4px 0;transition:color .25s}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold-deep);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav a:hover::after{transform:scaleX(1)}
+.head-actions{display:flex;align-items:center;gap:12px;flex:none}
+.head-result-actions{display:flex;align-items:center;gap:10px}
+body[data-screen="result"] .head-result-actions{display:none!important}
+#quizExit .icon{transform:rotate(180deg)}
+
+/* ---------- Buttons & links ---------- */
+.btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+  min-height:52px;
+  padding:0 27px;
+  border:1px solid transparent;
+  border-radius:2px;
+  font-size:13.5px;
+  font-weight:500;
+  line-height:1.2;
+  letter-spacing:.08em;
+  white-space:nowrap;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease);
+  overflow:hidden;
+  isolation:isolate;
+}
+.btn .icon{width:15px;height:15px;stroke-width:1.6;transition:transform .3s var(--ease)}
+.btn:hover .icon.arrow{transform:translateX(4px)}
+.btn-gold{
+  color:#1a160f;
+  border-color:rgba(120,86,30,.38);
+  background:linear-gradient(120deg,#e1c68e 0%,#c6a05c 48%,#a87f3a 100%);
+  box-shadow:0 10px 28px rgba(134,94,28,.18);
+}
+.btn-gold::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.44) 48%,transparent 68%);
+  transform:translateX(-120%);
+  transition:transform .7s var(--ease);
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(134,94,28,.24)}
+.btn-gold:hover::after{transform:translateX(120%)}
+.btn-ghost{border-color:var(--line-strong);color:var(--ink);background:rgba(255,253,248,.35)}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(255,253,248,.8);transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+.btn-dark{background:var(--ink);color:var(--gold-pale);border-color:rgba(223,197,141,.35)}
+.btn-dark:hover{transform:translateY(-2px);background:#211d16;box-shadow:0 16px 40px rgba(24,21,16,.24)}
+.btn-sm{min-height:42px;padding:0 18px;font-size:12px;letter-spacing:.06em}
+.btn-wide{width:100%}
+.text-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;letter-spacing:.08em;color:var(--muted);
+  padding:8px 0;transition:color .25s;
+}
+.text-btn:hover{color:var(--ink)}
+.text-btn .icon{width:14px;height:14px}
+.text-btn.gold{color:var(--gold-deep)}
+.text-btn.gold:hover{color:var(--ink)}
+.link-underline{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.12em;color:var(--gold-deep)}
+.link-underline::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform-origin:left;transition:transform .3s var(--ease)}
+.link-underline:hover::after{transform:scaleX(.45)}
+
+/* ---------- Home: hero ---------- */
+.screen-home{overflow:hidden}
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100svh;
+  display:grid;
+  grid-template-columns:minmax(0,1.06fr) minmax(340px,.94fr);
+  align-items:center;
+  gap:clamp(28px,5vw,76px);
+  padding-top:calc(var(--head-h) + 58px);
+  padding-bottom:76px;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  right:-14vw;
+  top:2vh;
+  width:min(78vw,920px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(223,197,141,.22),rgba(223,197,141,.06) 44%,transparent 69%);
+  pointer-events:none;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-18vw;
+  bottom:-26vw;
+  width:60vw;
+  aspect-ratio:1;
+  border:1px solid rgba(176,138,69,.12);
+  border-radius:50%;
+  box-shadow:0 0 0 70px rgba(176,138,69,.025),0 0 0 140px rgba(176,138,69,.018);
+  pointer-events:none;
+}
+.hero-copy{position:relative;z-index:2;max-width:680px;animation:fadeUp .9s .1s both var(--ease)}
+.hero h1{
+  margin:24px 0 0;
+  font-family:var(--serif);
+  font-size:clamp(46px,5.6vw,82px);
+  font-weight:500;
+  line-height:1.17;
+  letter-spacing:.005em;
+}
+.hero h1 .accent{
+  position:relative;
+  display:block;
+  margin-top:2px;
+  color:var(--gold-deep);
+  background:linear-gradient(100deg,#684918 0%,#b48a44 44%,#7a5720 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero h1 .accent::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:.09em;
+  width:min(84%,460px);
+  height:8px;
+  background:linear-gradient(90deg,rgba(223,197,141,.65),rgba(223,197,141,0));
+  clip-path:polygon(0 62%,100% 0,100% 28%,0 100%);
+  pointer-events:none;
+}
+.hero-lede{
+  max-width:530px;
+  margin:29px 0 0;
+  color:var(--ink-soft);
+  font-size:clamp(14.5px,1.25vw,16.5px);
+  line-height:2.02;
+  letter-spacing:.015em;
+}
+.hero-lede strong{font-weight:500;color:var(--ink)}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:36px}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:stretch;
+  gap:0;
+  margin-top:46px;
+  padding-top:23px;
+  border-top:1px solid var(--line);
+  max-width:590px;
+}
+.hero-meta span{
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  padding-right:23px;
+  margin-right:23px;
+  border-right:1px solid var(--line);
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:.08em;
+}
+.hero-meta span:last-child{border-right:0;margin-right:0;padding-right:0}
+.hero-meta strong{
+  font-family:var(--latin);
+  font-size:21px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:0;
+  color:var(--ink);
+}
+.hero-art{
+  position:relative;
+  z-index:2;
+  align-self:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:540px;
+  animation:fadeIn 1.1s .25s both var(--ease);
+}
+.hero-art::before{
+  content:"05";
+  position:absolute;
+  z-index:0;
+  top:46%;
+  left:48%;
+  transform:translate(-50%,-50%);
+  font-family:var(--serif);
+  font-size:clamp(190px,27vw,350px);
+  font-weight:400;
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(176,138,69,.13);
+  letter-spacing:-.04em;
+  pointer-events:none;
+  user-select:none;
+}
+.hero-art::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  width:min(88%,470px);
+  aspect-ratio:1;
+  border:1px solid rgba(176,138,69,.15);
+  border-radius:50%;
+  box-shadow:0 0 0 34px rgba(176,138,69,.028),0 0 0 68px rgba(176,138,69,.018);
+  pointer-events:none;
+}
+.hero-svg{
+  position:relative;
+  z-index:1;
+  width:min(100%,466px);
+  height:auto;
+  filter:drop-shadow(0 34px 62px rgba(73,52,18,.14));
+}
+.hero-svg .hero-clock{transform-origin:260px 252px;animation:slowSpin 140s linear infinite}
+.hero-svg .hero-figure{transform-origin:260px 420px;animation:softFloat 8s ease-in-out infinite}
+.hero-svg .hero-moth-a{transform-origin:153px 208px;animation:wing 7s ease-in-out infinite}
+.hero-svg .hero-moth-b{transform-origin:384px 328px;animation:wing 8.5s .8s ease-in-out infinite}
+.float-chip{
+  position:absolute;
+  z-index:3;
+  padding:11px 15px;
+  border:1px solid rgba(124,90,34,.24);
+  background:rgba(255,253,248,.88);
+  box-shadow:0 14px 32px rgba(73,52,18,.10);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  pointer-events:none;
+}
+.float-chip small{
+  display:block;
+  font-family:var(--latin);
+  font-size:8px;
+  line-height:1.3;
+  letter-spacing:.22em;
+  color:var(--gold-deep);
+}
+.float-chip strong{
+  display:block;
+  margin-top:3px;
+  font-family:var(--serif);
+  font-size:15px;
+  font-weight:500;
+  letter-spacing:.04em;
+  color:var(--ink);
+}
+.chip-a{top:16%;left:-1.5%}
+.chip-b{right:-1.5%;bottom:17%}
+.hero-scroll{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  bottom:28px;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  font-family:var(--latin);
+  font-size:8px;
+  letter-spacing:.28em;
+  color:var(--muted);
+}
+.hero-scroll::after{content:"";width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:scrollLine 2.6s ease-in-out infinite}
+
+/* ---------- Ticker ---------- */
+.ticker{
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:rgba(255,253,248,.32);
+}
+.ticker-track{
+  display:flex;
+  width:max-content;
+  padding:14px 0;
+  animation:marquee 64s linear infinite;
+  will-change:transform;
+}
+.ticker-group{display:flex;align-items:center;flex:none}
+.ticker-group span{
+  display:inline-flex;
+  align-items:center;
+  gap:26px;
+  padding-right:26px;
+  font-family:var(--latin);
+  font-size:9px;
+  letter-spacing:.3em;
+  color:var(--gold-deep);
+  white-space:nowrap;
+}
+.ticker-group span::after{content:"◆";font-size:6px;color:rgba(124,90,34,.45)}
+
+/* ---------- Section headers ---------- */
+.section-head{
+  display:grid;
+  grid-template-columns:minmax(150px,190px) minmax(0,1fr);
+  gap:clamp(26px,5vw,72px);
+  align-items:start;
+  margin-bottom:clamp(36px,4vw,56px);
+}
+.section-label{
+  padding-top:8px;
+  font-family:var(--latin);
+  font-size:9px;
+  line-height:1.6;
+  letter-spacing:.26em;
+  color:var(--gold-deep);
+}
+.section-label .num{
+  display:block;
+  margin-bottom:9px;
+  font-family:var(--serif);
+  font-size:44px;
+  font-weight:400;
+  line-height:.9;
+  letter-spacing:-.02em;
+  color:var(--gold);
+}
+.section-title{
+  max-width:850px;
+  font-family:var(--serif);
+  font-size:clamp(33px,4.2vw,56px);
+  font-weight:500;
+  line-height:1.32;
+  letter-spacing:.005em;
+  text-wrap:balance;
+}
+.section-title em{font-style:normal;color:var(--gold-deep)}
+.section-lead{
+  max-width:710px;
+  margin-top:20px;
+  color:var(--ink-soft);
+  font-size:14.5px;
+  line-height:2;
+}
+
+/* ---------- Premise ---------- */
+.premise-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(30px,6vw,88px);
+  align-items:start;
+  padding-top:12px;
+}
+.premise-quote{
+  position:relative;
+  padding:18px 0 18px clamp(24px,3vw,42px);
+  border-left:1px solid var(--line-strong);
+  font-family:var(--serif);
+  font-size:clamp(23px,2.4vw,32px);
+  font-weight:400;
+  line-height:1.72;
+  color:var(--ink);
+}
+.premise-quote::before{
+  content:"“";
+  position:absolute;
+  top:-20px;
+  left:14px;
+  font-family:var(--serif);
+  font-size:80px;
+  line-height:1;
+  color:rgba(176,138,69,.18);
+}
+.premise-body p{color:var(--ink-soft);font-size:14.5px;line-height:2.02}
+.premise-body p + p{margin-top:16px}
+.premise-body strong{font-weight:500;color:var(--ink)}
+.note-list{margin-top:30px;border-top:1px solid var(--line)}
+.note-row{display:grid;grid-template-columns:30px 1fr;gap:15px;padding:15px 0;border-bottom:1px solid var(--line)}
+.note-row .idx{font-family:var(--latin);font-size:9px;letter-spacing:.15em;color:var(--gold-deep);padding-top:5px}
+.note-row p{font-size:12.5px;line-height:1.85;color:var(--muted)}
+.note-row strong{display:block;margin-bottom:2px;font-size:12.5px;font-weight:500;color:var(--ink-soft)}
+.stat-band{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin-top:clamp(42px,5vw,66px);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,rgba(255,253,248,.4),rgba(255,253,248,.12));
+}
+.stat-band .stat{
+  padding:25px 20px;
+  text-align:center;
+  border-right:1px solid var(--line);
+}
+.stat-band .stat:last-child{border-right:0}
+.stat strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(30px,3.2vw,42px);
+  font-weight:400;
+  line-height:1;
+  color:var(--ink);
+}
+.stat strong sub{font-family:var(--latin);font-size:9px;letter-spacing:.12em;color:var(--gold-deep);vertical-align:super}
+.stat span{display:block;margin-top:8px;font-size:10px;letter-spacing:.16em;color:var(--muted)}
+
+/* ---------- Method ---------- */
+.method{padding-top:0}
+.method-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.method-card{padding:28px clamp(20px,3vw,34px) 32px;border-right:1px solid var(--line);position:relative}
+.method-card:last-child{border-right:0}
+.method-card .idx{font-family:var(--latin);font-size:9px;letter-spacing:.2em;color:var(--gold-deep)}
+.method-card h3{margin-top:30px;font-family:var(--serif);font-size:24px;font-weight:500}
+.method-card p{margin-top:11px;font-size:13px;line-height:1.95;color:var(--muted)}
+.method-card::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+.method-card:hover::after{width:100%}
+.score-rule{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(28px,4vw,64px);
+  margin-top:26px;
+  padding:clamp(26px,3.4vw,40px);
+  border:1px solid var(--line);
+  background:linear-gradient(115deg,rgba(255,253,248,.72),rgba(239,226,197,.18));
+}
+.score-rule h3{font-family:var(--serif);font-size:clamp(25px,2.6vw,34px);font-weight:500;line-height:1.4;margin-top:12px}
+.score-rule > div > p{margin-top:13px;font-size:12.5px;line-height:1.9;color:var(--muted)}
+.formula-list{display:grid;gap:0;align-content:start}
+.formula-row{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.formula-row:first-child{padding-top:0}
+.formula-row:last-child{border-bottom:0;padding-bottom:0}
+.formula-row .n{font-family:var(--latin);font-size:9px;letter-spacing:.12em;color:var(--gold-deep);padding-top:4px}
+.formula-row p{font-size:12.5px;line-height:1.85;color:var(--ink-soft)}
+.formula-row strong{font-weight:500;color:var(--ink)}
+.code{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:22px;
+  height:22px;
+  padding:0 5px;
+  margin:0 2px;
+  border:1px solid rgba(176,138,69,.36);
+  background:rgba(255,253,248,.6);
+  font-family:var(--latin);
+  font-size:9px;
+  letter-spacing:.04em;
+  color:var(--gold-deep);
+}
+
+/* ---------- Dimensions ---------- */
+.dim-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+  margin-top:clamp(38px,4.6vw,56px);
+}
+.dim-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  min-height:288px;
+  padding:21px 18px 22px;
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.38);
+  transition:transform .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);
+  overflow:hidden;
+}
+.dim-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--gold),rgba(176,138,69,0));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.dim-card:hover{transform:translateY(-5px);background:rgba(255,253,248,.85);border-color:var(--line-strong);box-shadow:var(--shadow-soft)}
+.dim-card:hover::before{transform:scaleX(1)}
+.dim-card .idx{font-family:var(--latin);font-size:9px;letter-spacing:.2em;color:var(--gold-deep);opacity:.8}
+.dim-card .icon{width:32px;height:32px;margin:31px 0 20px;color:var(--gold-deep);stroke-width:1.25}
+.dim-card h3{font-family:var(--serif);font-size:23px;font-weight:500;line-height:1.3}
+.dim-card .en{margin-top:3px;font-family:var(--latin);font-size:8px;letter-spacing:.22em;color:var(--muted)}
+.dim-card > p{margin-top:13px;font-size:12px;line-height:1.9;color:var(--muted)}
+.dim-traits{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:19px}
+.dim-traits span{font-size:9px;letter-spacing:.06em;line-height:1;color:var(--ink-soft);border:1px solid var(--line);padding:5px 7px}
+
+/* ---------- Atlas ---------- */
+.atlas-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:clamp(38px,4.6vw,56px);
+}
+.atlas-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  min-height:310px;
+  padding:clamp(22px,2.6vw,30px);
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.62);
+  overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.atlas-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:var(--shadow-soft)}
+.atlas-card::after{
+  content:"";
+  position:absolute;
+  right:-45px;bottom:-55px;
+  width:150px;height:150px;
+  border:1px solid rgba(176,138,69,.16);
+  border-radius:50%;
+  pointer-events:none;
+}
+.atlas-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.atlas-top .idx{font-family:var(--latin);font-size:9px;letter-spacing:.2em;color:var(--gold-deep);opacity:.8}
+.atlas-top .icon{width:36px;height:36px;color:var(--gold-deep);stroke-width:1.2}
+.atlas-pos{margin-top:34px;font-size:9px;letter-spacing:.18em;color:var(--gold-deep)}
+.atlas-card h3{margin-top:7px;font-family:var(--serif);font-size:clamp(24px,2.45vw,30px);font-weight:500;line-height:1.3}
+.atlas-en{margin-top:4px;font-family:var(--latin);font-size:8px;letter-spacing:.23em;color:var(--muted)}
+.atlas-tagline{margin-top:15px;font-family:var(--serif);font-size:14px;line-height:1.8;color:var(--ink-soft)}
+.atlas-keywords{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:23px}
+.atlas-keywords span{font-size:9px;line-height:1;letter-spacing:.06em;color:var(--muted);border-top:1px solid var(--line);padding-top:6px;margin-right:7px}
+.atlas-card--dark{background:linear-gradient(145deg,#1d1913,#12100c);border-color:rgba(223,197,141,.27);color:var(--paper)}
+.atlas-card--dark h3{color:#f3e8d2}
+.atlas-card--dark .atlas-pos,.atlas-card--dark .atlas-top .idx{color:var(--gold-light)}
+.atlas-card--dark .atlas-top .icon{color:var(--gold-light)}
+.atlas-card--dark .atlas-en,.atlas-card--dark .atlas-tagline{color:#bdb09a}
+.atlas-card--dark .atlas-keywords span{color:#ab9d85;border-top-color:rgba(223,197,141,.22)}
+.atlas-card--gold{background:linear-gradient(140deg,#e5cf9d 0%,#c8a45f 55%,#ae8743 100%);border-color:rgba(90,63,18,.28)}
+.atlas-card--gold h3,.atlas-card--gold .atlas-pos,.atlas-card--gold .atlas-top .idx,.atlas-card--gold .atlas-top .icon{color:#2b210f}
+.atlas-card--gold .atlas-en{color:rgba(43,33,15,.58)}
+.atlas-card--gold .atlas-tagline{color:rgba(43,33,15,.82)}
+.atlas-card--gold .atlas-keywords span{color:rgba(43,33,15,.64);border-top-color:rgba(43,33,15,.22)}
+.atlas-card--gold::after{border-color:rgba(43,33,15,.2)}
+
+/* ---------- CTA ---------- */
+.cta-section{padding-top:10px}
+.cta-panel{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(42px,6vw,86px);
+  border:1px solid rgba(223,197,141,.3);
+  background:
+    radial-gradient(ellipse 70% 120% at 92% 20%,rgba(176,138,69,.3),transparent 58%),
+    linear-gradient(120deg,#211d16,#12100c 70%);
+  color:var(--paper);
+}
+.cta-panel::before{
+  content:"";
+  position:absolute;
+  right:-8%;top:-48%;
+  width:min(56vw,700px);
+  aspect-ratio:1;
+  border:1px solid rgba(223,197,141,.18);
+  border-radius:50%;
+  box-shadow:0 0 0 54px rgba(223,197,141,.035),0 0 0 108px rgba(223,197,141,.022),0 0 0 162px rgba(223,197,141,.014);
+  pointer-events:none;
+}
+.cta-panel::after{
+  content:"IVL";
+  position:absolute;
+  right:2%;bottom:-9%;
+  font-family:var(--serif);
+  font-size:clamp(160px,24vw,330px);
+  line-height:1;
+  letter-spacing:-.06em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(223,197,141,.09);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;max-width:700px}
+.cta-panel .eyebrow{color:var(--gold-light)}
+.cta-panel .eyebrow::before{background:var(--gold-light)}
+.cta-panel h2{margin-top:22px;font-family:var(--serif);font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1.25;color:#f6ecda}
+.cta-panel h2 em{font-style:normal;color:var(--gold-light)}
+.cta-panel p{max-width:520px;margin-top:18px;color:#bdb09a;font-size:13.5px;line-height:1.95}
+.cta-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:31px}
+.cta-meta{margin-top:17px!important;font-size:10px!important;letter-spacing:.1em;color:#8d816f!important}
+
+/* ---------- Footer ---------- */
+.site-foot{position:relative;z-index:1;padding:50px 0 70px;border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px)}
+.foot-main{display:flex;justify-content:space-between;align-items:flex-start;gap:38px;flex-wrap:wrap}
+.foot-brand{display:flex;align-items:center;gap:12px}
+.foot-brand .brand-mark{width:34px;height:34px}
+.foot-brand strong{display:block;font-family:var(--latin);font-size:11px;letter-spacing:.22em}
+.foot-brand small{display:block;margin-top:3px;font-size:9px;letter-spacing:.2em;color:var(--muted)}
+.foot-links{display:flex;flex-wrap:wrap;gap:18px 26px;padding-top:3px}
+.foot-links a,.foot-links button{font-size:11px;letter-spacing:.08em;color:var(--muted);transition:color .25s}
+.foot-links a:hover,.foot-links button:hover{color:var(--ink)}
+.foot-mark{font-family:var(--latin);font-size:9px;letter-spacing:.22em;color:var(--muted);padding-top:4px}
+.disclaimer{
+  max-width:860px;
+  margin-top:38px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:10.5px;
+  line-height:1.95;
+}
+.disclaimer strong{font-weight:500;color:var(--ink-soft)}
+
+/* =========================================================
+   Quiz
+   ========================================================= */
+body[data-screen="quiz"]{background:var(--paper)}
+#screen-quiz{min-height:100svh;padding:calc(var(--head-h) + 54px) 0 90px}
+.quiz-wrap{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 292px;
+  gap:clamp(28px,4.6vw,64px);
+  align-items:start;
+}
+.quiz-main{min-width:0}
+.quiz-leadline{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:15px}
+.quiz-leadline .eyebrow{font-size:9px}
+.quiz-leadline .answered-top{font-size:10px;letter-spacing:.14em;color:var(--muted);white-space:nowrap}
+.progress-track{height:3px;background:rgba(124,90,34,.12);overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#8a6628,#d1b271);transition:width .55s var(--ease)}
+.review-banner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:20px;
+  padding:12px 15px;
+  border:1px solid rgba(176,138,69,.34);
+  background:rgba(223,197,141,.15);
+  font-size:11.5px;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.review-banner strong{font-weight:500;color:var(--gold-deep)}
+.review-banner .btn{min-height:34px;padding:0 12px;font-size:10.5px}
+.quiz-card{
+  position:relative;
+  margin-top:30px;
+  padding:clamp(24px,4.2vw,50px);
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.64);
+  box-shadow:0 18px 60px rgba(77,56,20,.045);
+}
+.quiz-card::before{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:1px solid rgba(176,138,69,.09);
+  pointer-events:none;
+}
+.quiz-meta{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:24px}
+.quiz-count{font-family:var(--latin);font-size:10px;letter-spacing:.18em;color:var(--gold-deep)}
+.quiz-count b{font-family:var(--serif);font-size:21px;font-weight:400;letter-spacing:0;color:var(--ink);margin:0 3px 0 6px}
+.quiz-count .total{color:var(--muted);letter-spacing:.08em}
+.quiz-tag{font-size:9px;letter-spacing:.16em;color:var(--muted);border:1px solid var(--line);padding:5px 9px;white-space:nowrap}
+.quiz-question{
+  position:relative;
+  max-width:760px;
+  font-family:var(--serif);
+  font-size:clamp(23px,2.9vw,35px);
+  font-weight:500;
+  line-height:1.52;
+  letter-spacing:.005em;
+  text-wrap:balance;
+}
+.quiz-question:focus,.result-name:focus{outline:none}
+.quiz-hint{position:relative;margin:13px 0 27px;font-size:11.5px;letter-spacing:.04em;color:var(--muted)}
+.options{position:relative;display:grid;gap:9px}
+.option{
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) 22px;
+  align-items:center;
+  gap:15px;
+  width:100%;
+  min-height:64px;
+  padding:13px 17px;
+  border:1px solid rgba(124,90,34,.18);
+  border-radius:2px;
+  background:rgba(255,253,248,.48);
+  text-align:left;
+  transition:transform .25s var(--ease),border-color .25s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease);
+}
+.option:hover{transform:translateX(3px);border-color:rgba(176,138,69,.5);background:rgba(255,253,248,.88)}
+.option:active{transform:translateX(1px) scale(.997)}
+.option-letter{
+  display:grid;
+  place-items:center;
+  width:36px;height:36px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  font-family:var(--latin);
+  font-size:11px;
+  letter-spacing:.02em;
+  color:var(--gold-deep);
+  transition:background .25s,color .25s,border-color .25s;
+}
+.option-text{font-size:14.5px;line-height:1.72;color:var(--ink-soft);letter-spacing:.01em}
+.option-check{width:17px;height:17px;color:var(--gold-deep);opacity:0;transform:scale(.7);transition:opacity .2s,transform .25s var(--ease)}
+.option.is-selected{border-color:rgba(124,90,34,.66);background:linear-gradient(90deg,rgba(223,197,141,.2),rgba(255,253,248,.8));box-shadow:inset 3px 0 0 var(--gold)}
+.option.is-selected .option-letter{background:var(--gold-deep);border-color:var(--gold-deep);color:#fff8e9}
+.option.is-selected .option-check{opacity:1;transform:scale(1)}
+.options.is-error{animation:shake .4s ease}
+.inline-alert{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:0 0 13px;
+  color:#87531f;
+  font-size:11.5px;
+  letter-spacing:.03em;
+}
+.inline-alert::before{content:"";width:5px;height:5px;background:#b0732b;transform:rotate(45deg);flex:none}
+.quiz-nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:31px;padding-top:23px;border-top:1px solid var(--line)}
+.quiz-nav-right{display:flex;align-items:center;gap:18px}
+.answered-hint{font-size:10px;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
+.quiz-footnote{margin-top:18px;text-align:center;font-size:10px;letter-spacing:.08em;color:var(--muted-2)}
+.mobile-map{display:none;margin-top:22px}
+.mobile-map .map-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:420px;margin-inline:auto}
+.mobile-map .map-dot{height:auto;aspect-ratio:1;font-size:8px}
+.quiz-side{position:sticky;top:104px}
+.side-card{border:1px solid var(--line);background:rgba(255,253,248,.48);padding:24px 22px}
+.side-card .eyebrow{font-size:8px;letter-spacing:.22em}
+.ring-wrap{position:relative;width:132px;height:132px;margin:20px auto 12px}
+.ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:rgba(124,90,34,.12);stroke-width:4}
+.ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:4;stroke-linecap:round;transition:stroke-dasharray .55s var(--ease)}
+.ring-value{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.ring-value strong{font-family:var(--serif);font-size:30px;font-weight:400}
+.ring-value span{margin-top:5px;font-family:var(--latin);font-size:7px;letter-spacing:.18em;color:var(--muted)}
+.side-answered{text-align:center;font-size:10px;letter-spacing:.1em;color:var(--muted)}
+.side-divider{height:1px;background:var(--line);margin:20px 0}
+.side-title{font-size:9px;letter-spacing:.17em;color:var(--gold-deep);margin-bottom:11px}
+.question-map{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.map-dot{
+  display:grid;
+  place-items:center;
+  aspect-ratio:1;
+  border:1px solid var(--line);
+  background:transparent;
+  font-family:var(--latin);
+  font-size:9px;
+  color:var(--muted-2);
+  transition:background .2s,border-color .2s,color .2s,transform .2s;
+}
+.map-dot:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px)}
+.map-dot.is-answered{background:rgba(176,138,69,.13);border-color:rgba(176,138,69,.34);color:var(--ink-soft)}
+.map-dot.is-current{border-color:var(--gold-deep);box-shadow:inset 0 0 0 1px var(--gold-deep);color:var(--ink)}
+.side-generate{margin-top:15px}
+.side-note{margin-top:13px;font-size:9.5px;line-height:1.8;color:var(--muted-2)}
+.side-tip{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--serif);font-size:12.5px;line-height:1.85;color:var(--muted)}
+
+/* =========================================================
+   Result
+   ========================================================= */
+#screen-result{padding:calc(var(--head-h) + 38px) 0 100px}
+.result-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.result-toolbar .eyebrow{font-size:9px}
+.result-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.result-hero{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr) 160px;
+  align-items:center;
+  gap:clamp(23px,4vw,58px);
+  padding:clamp(28px,4.6vw,58px);
+  border:1px solid rgba(223,197,141,.3);
+  background:
+    radial-gradient(ellipse 80% 120% at 10% 10%,rgba(176,138,69,.22),transparent 55%),
+    linear-gradient(125deg,#211d16 0%,#12100c 72%);
+  color:var(--paper);
+  box-shadow:0 30px 80px rgba(30,23,12,.18);
+}
+.result-hero::before{
+  content:"";
+  position:absolute;
+  right:-14%;top:-52%;
+  width:58%;
+  aspect-ratio:1;
+  border:1px solid rgba(223,197,141,.15);
+  border-radius:50%;
+  box-shadow:0 0 0 45px rgba(223,197,141,.028),0 0 0 90px rgba(223,197,141,.018);
+  pointer-events:none;
+}
+.result-hero::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(223,197,141,.5),transparent);
+}
+.result-emblem{position:relative;width:176px;height:176px;display:grid;place-items:center;margin-inline:auto;color:var(--gold-light)}
+.emblem-ring{position:absolute;inset:0;width:100%;height:100%;animation:slowSpin 55s linear infinite;color:rgba(223,197,141,.54)}
+.emblem-ring text{fill:currentColor;font-family:var(--latin);font-size:8px;letter-spacing:3.1px}
+.emblem-inner{position:absolute;inset:20px;border:1px solid rgba(223,197,141,.3);border-radius:50%}
+svg.emblem-icon{width:78px;height:78px;color:var(--gold-light);stroke-width:1.15;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 16px rgba(223,197,141,.16))}
+.emblem-pos{position:absolute;bottom:-7px;font-family:var(--latin);font-size:7px;letter-spacing:.22em;color:var(--gold-light);background:#17130e;padding:3px 7px;border:1px solid rgba(223,197,141,.25)}
+.result-kicker{font-family:var(--latin);font-size:9px;letter-spacing:.24em;color:var(--gold-light)}
+.result-position{margin-top:10px;font-size:10px;letter-spacing:.18em;color:#c9b995}
+.result-name{margin-top:5px;font-family:var(--serif);font-size:clamp(42px,5.6vw,72px);font-weight:400;line-height:1.12;color:#f5ead4;letter-spacing:.01em}
+.result-en{margin-top:6px;font-family:var(--latin);font-size:10px;letter-spacing:.3em;color:#a99472}
+.result-tagline{margin-top:17px;font-family:var(--serif);font-size:clamp(15px,1.55vw,18px);line-height:1.75;color:var(--gold-light)}
+.result-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.result-tags span{font-size:9px;letter-spacing:.08em;line-height:1;color:#c8b89c;border:1px solid rgba(223,197,141,.24);padding:6px 8px}
+.result-index{border-left:1px solid rgba(223,197,141,.2);padding-left:25px;text-align:center}
+.result-index .index-label{font-family:var(--latin);font-size:7px;letter-spacing:.2em;color:#a99472}
+.result-index .score{display:flex;align-items:flex-start;justify-content:center;margin-top:9px;font-family:var(--serif);font-size:56px;font-weight:400;line-height:.95;color:#f5ead4}
+.result-index .score small{font-family:var(--latin);font-size:15px;margin-top:6px;margin-left:2px;color:var(--gold-light)}
+.result-index p{margin-top:9px;font-size:9.5px;line-height:1.7;color:#a99472}
+.result-index .secondary{margin-top:15px;padding-top:13px;border-top:1px solid rgba(223,197,141,.18);font-size:9.5px;line-height:1.7;color:#c8b89c}
+.result-index .secondary strong{display:block;font-weight:400;color:var(--gold-light);font-size:11px;margin-top:3px}
+
+.result-section{padding:clamp(39px,5.5vw,68px) 0;border-bottom:1px solid var(--line)}
+.result-section:last-of-type{border-bottom:0}
+.result-section-head{display:grid;grid-template-columns:160px minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:start;margin-bottom:25px}
+.result-section-head .section-label{padding-top:4px}
+.result-section-head h2{font-family:var(--serif);font-size:clamp(26px,3.3vw,42px);font-weight:500;line-height:1.4;text-wrap:balance}
+.result-section-head h2 em{font-style:normal;color:var(--gold-deep)}
+.result-section-head p{max-width:760px;margin-top:10px;font-size:12.5px;line-height:1.9;color:var(--muted)}
+.profile-text{max-width:890px}
+.profile-text p{font-family:var(--serif);font-size:clamp(16px,1.55vw,19px);line-height:2.05;color:var(--ink-2)}
+.profile-text p + p{margin-top:17px}
+.profile-text p:first-child::first-letter{
+  float:left;
+  margin:8px 9px 0 0;
+  font-family:var(--serif);
+  font-size:52px;
+  line-height:.72;
+  color:var(--gold-deep);
+}
+.spectrum{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(28px,5vw,74px);align-items:center;max-width:1050px}
+.radar-wrap{position:relative;padding:16px 14px;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 46%,rgba(223,197,141,.12),rgba(255,253,248,.15) 68%)}
+.radar-svg{width:100%;height:auto;overflow:visible}
+.radar-grid{fill:none;stroke:rgba(124,90,34,.17);stroke-width:1}
+.radar-axis{stroke:rgba(124,90,34,.14);stroke-width:1}
+.radar-value{fill:rgba(176,138,69,.17);stroke:#a37c37;stroke-width:1.5;stroke-linejoin:round}
+.radar-dot{fill:#8d6829}
+.radar-label{font-family:var(--serif);font-size:14px;fill:var(--ink);letter-spacing:1px}
+.radar-label-en{font-family:var(--latin);font-size:9px;letter-spacing:1.6px;fill:var(--gold-deep)}
+.radar-num{font-family:var(--latin);font-size:8px;fill:var(--gold-deep)}
+.dim-bars{display:grid;gap:17px}
+.dim-bar-top{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.dim-bar-name{display:flex;align-items:baseline;gap:9px;font-family:var(--serif);font-size:17px;color:var(--ink)}
+.dim-bar-name .idx{font-family:var(--latin);font-size:8px;letter-spacing:.12em;color:var(--gold-deep)}
+.dim-bar-name small{font-family:var(--latin);font-size:6.5px;letter-spacing:.16em;color:var(--muted)}
+.dim-bar-score{font-family:var(--latin);font-size:10px;letter-spacing:.05em;color:var(--muted)}
+.dim-bar-score b{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--ink);margin-right:4px}
+.dim-bar{height:3px;margin-top:7px;background:rgba(124,90,34,.11);overflow:hidden}
+.dim-bar-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,#9d7736,#d7ba7c);transition:width 1s .15s var(--ease)}
+.dim-bar-fill.is-top{background:linear-gradient(90deg,#7c5a22,#c9a65f)}
+.dim-bar-note{margin-top:4px;font-size:9px;letter-spacing:.04em;color:var(--muted-2)}
+.spectrum-note{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:9.5px;line-height:1.9;color:var(--muted-2);max-width:700px}
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.insight-panel{padding:clamp(21px,2.6vw,28px);border:1px solid var(--line);background:rgba(255,253,248,.48)}
+.insight-panel h3{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:21px;font-weight:500}
+.insight-panel h3 .icon{width:18px;height:18px;color:var(--gold-deep)}
+.insight-panel ul{margin-top:17px}
+.insight-panel li{position:relative;padding:12px 0 12px 19px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.85;color:var(--ink-soft)}
+.insight-panel li::before{content:"";position:absolute;left:0;top:19px;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)}
+.insight-panel li strong{display:block;font-weight:500;color:var(--ink);margin-bottom:2px}
+.pressure-panel{display:flex;gap:clamp(18px,3vw,34px);align-items:flex-start;padding:clamp(23px,3.5vw,36px);border-left:2px solid var(--gold);background:linear-gradient(90deg,rgba(223,197,141,.13),rgba(255,253,248,.16))}
+.pressure-panel .icon{width:34px;height:34px;color:var(--gold-deep);flex:none;margin-top:3px;stroke-width:1.2}
+.pressure-panel .p-label{font-family:var(--latin);font-size:8px;letter-spacing:.22em;color:var(--gold-deep)}
+.pressure-panel p{margin-top:8px;font-family:var(--serif);font-size:clamp(15px,1.4vw,17px);line-height:1.95;color:var(--ink-2)}
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.partner-card{padding:clamp(21px,2.7vw,29px);border:1px solid var(--line);background:rgba(255,253,248,.48)}
+.partner-card.is-good{border-top:2px solid var(--gold)}
+.partner-card.is-friction{border-top:2px solid rgba(84,77,64,.35)}
+.partner-kind{display:flex;align-items:center;gap:8px;font-family:var(--latin);font-size:8px;letter-spacing:.2em;color:var(--gold-deep)}
+.partner-kind .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.partner-card.is-friction .partner-kind{color:var(--muted)}
+.partner-card.is-friction .dot{background:var(--muted)}
+.partner-name{margin-top:14px;font-family:var(--serif);font-size:clamp(23px,2.5vw,32px);font-weight:500}
+.partner-pos{margin-top:3px;font-size:9px;letter-spacing:.16em;color:var(--muted)}
+.partner-card p{margin-top:15px;font-size:12.5px;line-height:1.9;color:var(--ink-soft)}
+.actions-list{border-top:1px solid var(--line)}
+.action-row{display:grid;grid-template-columns:58px minmax(0,1fr);gap:20px;padding:21px 0;border-bottom:1px solid var(--line)}
+.action-num{font-family:var(--serif);font-size:29px;line-height:1;color:var(--gold);font-weight:400}
+.action-row h4{font-family:var(--serif);font-size:17px;font-weight:500;line-height:1.5}
+.action-row p{margin-top:5px;font-size:12.5px;line-height:1.9;color:var(--muted)}
+.position-note{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(26px,3.6vw,38px);
+  border:1px solid var(--line);
+  background:linear-gradient(120deg,rgba(255,253,248,.7),rgba(239,226,197,.2));
+}
+.position-note::after{
+  content:"POSITION";
+  position:absolute;
+  right:12px;bottom:-16px;
+  font-family:var(--latin);
+  font-size:clamp(44px,7vw,88px);
+  line-height:1;
+  letter-spacing:.03em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(176,138,69,.12);
+  pointer-events:none;
+}
+.position-label{font-family:var(--latin);font-size:8px;letter-spacing:.22em;color:var(--gold-deep)}
+.position-quote{position:relative;z-index:1;max-width:820px;margin-top:13px;font-family:var(--serif);font-size:clamp(18px,2vw,24px);line-height:1.8;color:var(--ink-2)}
+.review-panel{margin-top:34px;border:1px solid var(--line);background:rgba(255,253,248,.36)}
+.review-panel > summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 21px;
+  cursor:pointer;
+  list-style:none;
+  font-size:12px;
+  letter-spacing:.06em;
+  color:var(--ink-soft);
+}
+.review-panel > summary::-webkit-details-marker{display:none}
+.review-panel > summary .summary-arrow{transition:transform .3s var(--ease)}
+.review-panel[open] > summary .summary-arrow{transform:rotate(180deg)}
+.review-list{padding:0 21px 20px;border-top:1px solid var(--line)}
+.review-item{display:grid;grid-template-columns:32px minmax(0,1fr);gap:13px;padding:14px 0;border-bottom:1px solid var(--line)}
+.review-item:last-child{border-bottom:0}
+.review-item .q-num{font-family:var(--latin);font-size:9px;letter-spacing:.1em;color:var(--gold-deep);padding-top:4px}
+.review-item .q-text{font-size:12px;line-height:1.7;color:var(--muted)}
+.review-item .q-answer{display:flex;gap:8px;align-items:flex-start;margin-top:4px;font-size:12.5px;line-height:1.7;color:var(--ink-soft)}
+.review-item .q-answer b{font-family:var(--latin);font-weight:400;font-size:9px;letter-spacing:.06em;color:var(--gold-deep);border:1px solid var(--line);padding:2px 5px;flex:none;margin-top:2px}
+.result-endnote{max-width:900px;margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-size:10.5px;line-height:1.95;color:var(--muted)}
+.result-bottom-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:33px}
+
+/* ---------- Toast + modal ---------- */
+.toast{
+  position:fixed;
+  z-index:100;
+  left:50%;
+  bottom:26px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  max-width:min(92vw,500px);
+  padding:12px 18px;
+  border:1px solid rgba(223,197,141,.35);
+  background:rgba(24,21,16,.94);
+  color:#f1e6d2;
+  font-size:12px;
+  line-height:1.6;
+  letter-spacing:.02em;
+  box-shadow:0 16px 45px rgba(0,0,0,.2);
+  transform:translate(-50%,18px);
+  opacity:0;
+  pointer-events:none;
+  transition:transform .3s var(--ease),opacity .3s var(--ease);
+}
+.toast.is-visible{transform:translate(-50%,0);opacity:1}
+.toast-dot{width:6px;height:6px;background:var(--gold-light);transform:rotate(45deg);flex:none}
+.modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px}
+.modal-backdrop{position:absolute;inset:0;background:rgba(18,15,10,.55);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);animation:fadeIn .25s both}
+.modal-card{
+  position:relative;
+  z-index:1;
+  width:min(440px,100%);
+  padding:clamp(25px,4vw,38px);
+  border:1px solid rgba(223,197,141,.4);
+  background:var(--paper);
+  box-shadow:0 30px 90px rgba(0,0,0,.25);
+  animation:fadeUp .3s both var(--ease);
+}
+.modal-card h3{margin-top:14px;font-family:var(--serif);font-size:28px;font-weight:500;line-height:1.4}
+.modal-card p{margin-top:11px;font-size:13px;line-height:1.9;color:var(--muted)}
+.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:25px}
+.modal-actions .btn{min-height:42px;padding:0 17px;font-size:11.5px}
+
+/* ---------- Motion ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes slowSpin{to{transform:rotate(360deg)}}
+@keyframes wing{0%,100%{transform:rotate(0deg)}50%{transform:rotate(6deg)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes scrollLine{0%,100%{transform:scaleY(.35);transform-origin:top;opacity:.45}50%{transform:scaleY(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1080px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);gap:30px}
+  .hero-art{min-height:480px}
+  .hero-svg{width:min(100%,410px)}
+  .hero-art::before{font-size:clamp(160px,25vw,280px)}
+  .chip-a{left:-2%}
+  .chip-b{right:-2%}
+  .result-hero{grid-template-columns:160px minmax(0,1fr) 140px;gap:26px}
+  .result-emblem{width:152px;height:152px}
+  .result-index{padding-left:18px}
+}
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr;padding-top:calc(var(--head-h) + 50px);padding-bottom:58px;min-height:auto}
+  .hero-copy{max-width:680px}
+  .hero-art{min-height:0;margin-top:16px}
+  .hero-svg{width:min(100%,430px)}
+  .hero-art::before{font-size:clamp(170px,40vw,300px)}
+  .hero-art::after{width:min(70%,400px)}
+  .hero-scroll{display:none}
+  .hero::before{right:-30vw;top:12vh;width:100vw}
+  .nav{display:none}
+  .section-head{grid-template-columns:120px minmax(0,1fr);gap:26px}
+  .section-label .num{font-size:38px}
+  .premise-grid{grid-template-columns:1fr;gap:30px}
+  .dim-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dim-card{min-height:240px}
+  .dim-card .icon{margin-top:22px}
+  .atlas-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .method-grid{grid-template-columns:1fr}
+  .method-card{border-right:0;border-bottom:1px solid var(--line)}
+  .method-card:last-child{border-bottom:0}
+  .score-rule{grid-template-columns:1fr;gap:25px}
+  .quiz-wrap{grid-template-columns:1fr}
+  .quiz-side{display:none}
+  .mobile-map{display:block}
+  .review-banner{flex-wrap:wrap}
+  .result-hero{grid-template-columns:150px minmax(0,1fr);gap:22px}
+  .result-index{grid-column:2;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:16px;border-left:0;border-top:1px solid rgba(223,197,141,.18);padding:16px 0 0;text-align:left}
+  .result-index .score{margin-top:0;justify-content:flex-start}
+  .result-index p{margin-top:0}
+  .result-index .secondary{margin-top:0;padding-top:0;border-top:0;padding-left:16px;border-left:1px solid rgba(223,197,141,.18)}
+  .result-section-head{grid-template-columns:110px minmax(0,1fr);gap:25px}
+  .spectrum{grid-template-columns:1fr;gap:28px}
+  .radar-wrap{max-width:470px;margin-inline:auto}
+}
+@media (max-width:720px){
+  .container{width:calc(100% - 36px)}
+  .site-head{padding:14px 0}
+  .brand-mark{width:32px;height:32px}
+  .brand-text strong{font-size:10px;letter-spacing:.19em}
+  .brand-text small{font-size:8px;letter-spacing:.2em}
+  .head-actions .btn-sm{min-height:38px;padding:0 13px;font-size:11px}
+  .head-result-actions .text-btn{display:none}
+  .hero{padding-top:calc(var(--head-h) + 44px);padding-bottom:45px}
+  .hero h1{font-size:clamp(38px,11.4vw,62px);line-height:1.2}
+  .hero-lede{font-size:14px;line-height:1.95;margin-top:23px}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:27px}
+  .hero-actions .btn{width:100%}
+  .hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:13px 22px;max-width:390px;margin-top:30px;padding-top:18px}
+  .hero-meta span{padding:0;margin:0;border-right:0;font-size:10px}
+  .hero-meta span:nth-child(3),.hero-meta span:nth-child(4){padding-top:2px}
+  .hero-meta strong{font-size:18px}
+  .hero-art{margin-top:5px}
+  .hero-svg{width:min(100%,370px)}
+  .float-chip{display:none}
+  .hero-art::before{font-size:190px}
+  .ticker-track{padding:11px 0}
+  .ticker-group span{font-size:8px;gap:19px;padding-right:19px;letter-spacing:.24em}
+  .section{padding:64px 0}
+  .section-head{grid-template-columns:1fr;gap:13px;margin-bottom:30px}
+  .section-label{display:flex;align-items:baseline;gap:12px;padding-top:0}
+  .section-label .num{display:inline;margin:0;font-size:29px}
+  .section-title{font-size:clamp(31px,8.7vw,43px);line-height:1.35}
+  .section-lead{font-size:13px;line-height:1.95;margin-top:15px}
+  .premise-quote{font-size:22px;padding-left:22px}
+  .premise-body p{font-size:13px;line-height:1.95}
+  .stat-band{grid-template-columns:1fr 1fr}
+  .stat-band .stat:nth-child(2){border-right:0}
+  .stat-band .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .stat-band .stat{padding:19px 12px}
+  .dim-grid{grid-template-columns:1fr;gap:9px}
+  .dim-card{min-height:0;padding:20px}
+  .dim-card .icon{margin:18px 0 14px}
+  .dim-card > p{margin-top:9px}
+  .dim-traits{padding-top:15px}
+  .atlas-grid{grid-template-columns:1fr;gap:9px}
+  .atlas-card{min-height:0;padding:24px}
+  .atlas-card h3{font-size:27px}
+  .atlas-keywords{padding-top:17px}
+  .cta-panel{padding:34px 24px 38px}
+  .cta-panel h2{font-size:clamp(34px,10vw,48px)}
+  .cta-panel p{font-size:12.5px}
+  .cta-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .cta-actions .btn{width:100%}
+  .site-foot{margin-top:65px;padding:38px 0 54px}
+  .foot-main{gap:25px}
+  .foot-mark{display:none}
+  .disclaimer{font-size:10px;margin-top:27px}
+  .toast{bottom:18px;font-size:11px;padding:11px 14px}
+
+  #screen-quiz{padding:calc(var(--head-h) + 24px) 0 60px}
+  .quiz-leadline .eyebrow{font-size:8px}
+  .quiz-leadline .answered-top{font-size:9px}
+  .mobile-map{margin-top:16px}
+  .quiz-card{margin-top:18px;padding:20px 16px 22px}
+  .quiz-card::before{inset:5px}
+  .quiz-meta{margin-bottom:16px}
+  .quiz-question{font-size:clamp(22px,6.6vw,28px);line-height:1.55}
+  .quiz-hint{font-size:10.5px;margin:9px 0 17px}
+  .option{grid-template-columns:33px minmax(0,1fr) 17px;gap:11px;padding:11px 12px;min-height:58px}
+  .option-letter{width:31px;height:31px;font-size:10px}
+  .option-text{font-size:13.5px;line-height:1.7}
+  .quiz-nav{flex-wrap:wrap;gap:12px;margin-top:20px;padding-top:16px}
+  .quiz-nav .btn{min-height:46px;padding:0 17px;font-size:12px}
+  .quiz-nav-right{gap:10px;margin-left:auto}
+  .answered-hint{font-size:8.5px}
+  .mobile-map .map-grid{grid-template-columns:repeat(10,1fr);gap:4px}
+  .mobile-map .map-dot{font-size:7px}
+  .review-banner{align-items:flex-start;font-size:10.5px}
+  .review-banner .btn{min-height:31px;font-size:10px}
+  .quiz-footnote{font-size:9px}
+
+  #screen-result{padding:calc(var(--head-h) + 27px) 0 70px}
+  .result-toolbar{align-items:flex-start;flex-direction:column;gap:9px;margin-bottom:16px}
+  .result-actions{width:100%}
+  .result-actions .btn{min-height:38px;padding:0 12px;font-size:10.5px}
+  .result-hero{grid-template-columns:1fr;gap:19px;padding:24px 20px 23px}
+  .result-emblem{width:132px;height:132px;margin:0 auto}
+  svg.emblem-icon{width:56px;height:56px}
+  .result-copy{text-align:center}
+  .result-kicker,.result-position{letter-spacing:.16em}
+  .result-name{font-size:clamp(40px,11vw,55px)}
+  .result-tagline{font-size:14px;margin-top:13px}
+  .result-tags{justify-content:center;margin-top:14px}
+  .result-index{grid-column:auto;grid-template-columns:1fr 1fr;gap:12px;padding-top:14px;margin-top:2px}
+  .result-index .score{justify-content:center;font-size:44px}
+  .result-index p{text-align:center}
+  .result-index .secondary{padding-left:12px}
+  .result-section{padding:40px 0}
+  .result-section-head{grid-template-columns:1fr;gap:10px;margin-bottom:21px}
+  .result-section-head .section-label{display:flex;align-items:baseline;gap:11px}
+  .result-section-head h2{font-size:clamp(26px,7.4vw,34px)}
+  .result-section-head p{font-size:11.5px}
+  .profile-text p{font-size:15.5px;line-height:2}
+  .profile-text p:first-child::first-letter{font-size:44px;margin-top:7px}
+  .radar-wrap{max-width:390px}
+  .dim-bars{gap:15px}
+  .insight-grid,.partner-grid{grid-template-columns:1fr}
+  .pressure-panel{padding:21px 18px;gap:16px}
+  .pressure-panel .icon{width:26px;height:26px}
+  .pressure-panel p{font-size:14.5px;line-height:1.9}
+  .action-row{grid-template-columns:42px minmax(0,1fr);gap:13px;padding:17px 0}
+  .action-num{font-size:25px}
+  .action-row h4{font-size:15.5px}
+  .action-row p{font-size:12px}
+  .position-note{padding:23px 18px}
+  .position-note::after{font-size:50px}
+  .review-panel{margin-top:25px}
+  .review-panel > summary{padding:15px 14px;font-size:11px}
+  .review-list{padding:0 14px 14px}
+  .review-item{grid-template-columns:25px minmax(0,1fr);gap:9px}
+  .review-item .q-text{font-size:11px}
+  .review-item .q-answer{font-size:11.5px}
+  .result-bottom-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:26px}
+  .result-bottom-actions .btn{width:100%;padding:0 10px;font-size:11px;min-height:44px}
+  .result-bottom-actions .btn:first-child{grid-column:1/-1}
+  .modal-card{padding:24px 20px}
+  .modal-card h3{font-size:24px}
+  .modal-actions{display:grid;grid-template-columns:1fr 1fr}
+}
+@media (max-width:400px){
+  .container{width:calc(100% - 28px)}
+  .hero .eyebrow{font-size:9px;letter-spacing:.18em}
+  .hero .eyebrow::before{width:24px}
+  .quiz-card{padding:21px 14px}
+  .option{grid-template-columns:30px minmax(0,1fr) 15px;gap:9px;padding:11px 10px}
+  .option-letter{width:29px;height:29px}
+  .option-text{font-size:13px}
+  .answered-hint{display:none}
+  .result-bottom-actions{grid-template-columns:1fr}
+  .result-bottom-actions .btn:first-child{grid-column:auto}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+@media print{
+  @page{size:A4;margin:14mm}
+  body{background:#fff;color:#111;font-size:11px}
+  body::before,body::after,.site-head,.result-toolbar,.result-bottom-actions,.toast,.modal,.review-panel,.atlas-card::after,.result-hero::before{display:none!important}
+  .container{width:100%;max-width:none}
+  #screen-result{padding:0}
+  .screen-home,.screen-quiz{display:none!important}
+  #screen-result{display:block!important}
+  .result-hero{background:#17140f!important;print-color-adjust:exact;-webkit-print-color-adjust:exact;box-shadow:none;page-break-inside:avoid}
+  .emblem-ring,.hero-clock,.hero-figure{animation:none!important}
+  .result-section{padding:18px 0;page-break-inside:avoid}
+  .result-section-head{grid-template-columns:80px 1fr;gap:14px}
+  .result-section-head .section-label{font-size:7px}
+  .result-section-head .section-label .num{font-size:26px}
+  .profile-text p{font-size:12px;line-height:1.8}
+  .spectrum{grid-template-columns:1fr 1fr;gap:20px}
+  .radar-wrap{max-width:330px}
+  .insight-grid,.partner-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .result-index .score{font-size:42px}
+  .result-name{font-size:46px}
+}
+</style>
+</head>
+<body data-screen="home">
+
+<!-- Icon sprite -->
+<svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-decode" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="8.5"/>
+    <path d="M20 3.5v4M20 32.5v4M3.5 20h4M32.5 20h4M8.3 8.3l2.8 2.8M28.9 28.9l2.8 2.8M31.7 8.3l-2.8 2.8M11.1 28.9l-2.8 2.8"/>
+    <path d="M20 16.5v4.2M17.5 20.7h5"/>
+  </symbol>
+  <symbol id="i-kite" viewBox="0 0 40 40">
+    <path d="M5 28.5c5.8 0 5.8-17 11.6-17s5.8 17 11.6 17 5.8-17 5.8-17"/>
+    <circle cx="5" cy="28.5" r="1.7"/>
+    <path d="M19.5 4.5l6 6.5-6 6.5L13.5 11z"/>
+  </symbol>
+  <symbol id="i-rescue" viewBox="0 0 40 40">
+    <path d="M20 4.5l12 4.6v9.7c0 8-5.6 13.6-12 17.2-6.4-3.6-12-9.2-12-17.2V9.1z"/>
+    <path d="M20 13.5v12M14 19.5h12"/>
+  </symbol>
+  <symbol id="i-support" viewBox="0 0 40 40">
+    <circle cx="15" cy="21" r="8.5"/>
+    <circle cx="26" cy="17" r="7.2"/>
+    <path d="M28.8 29.5l1.1 3.2 3.3.5-2.4 2.4.6 3.3-2.9-1.6-3 1.5.7-3.2-2.4-2.4 3.3-.5z"/>
+  </symbol>
+  <symbol id="i-control" viewBox="0 0 40 40">
+    <path d="M20 3.8L36.2 20 20 36.2 3.8 20z"/>
+    <path d="M9 20c6.2-8.2 15.8-8.2 22 0-6.2 8.2-15.8 8.2-22 0z"/>
+    <circle cx="20" cy="20" r="2.6"/>
+  </symbol>
+  <symbol id="i-flex" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="15.2"/>
+    <path d="M20 4.8l4.2 11.1L35.2 20l-11 4.2L20 35.2l-4.2-11L4.8 20l11-4.1z"/>
+    <circle cx="20" cy="20" r="2.2"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V4h10v5M7 18H5a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 5 10h14a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 19 18h-2M7 14h10v6H7z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+  <symbol id="i-restart" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 2.1 6.1M4 4v6h6"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L20 8l-4-4L4 16zM14 6l4 4"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8.2-8 10-4.5-1.8-8-5-8-10V6z"/><path d="M8.5 12l2.3 2.3 4.7-5"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7a2.5 2.5 0 1 1-2.5 2.5"/></symbol>
+</svg>
+
+<!-- Header -->
+<header class="site-head" id="siteHead">
+  <div class="container head-inner">
+    <a class="brand" href="#top" aria-label="IVL PERSONA 首页">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 2.5 45.5 24 24 45.5 2.5 24Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M24 9.5 38.5 24 24 38.5 9.5 24Z" fill="none" stroke="currentColor" stroke-width=".8" opacity=".62"/>
+        <path d="M17.5 19.5 24 29l6.5-9.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="24" cy="24" r="1.2" fill="currentColor"/>
+      </svg>
+      <span class="brand-text">
+        <strong>IVL PERSONA</strong>
+        <small>赛场人格档案</small>
+      </span>
+    </a>
+    <nav class="nav home-only" aria-label="主导航">
+      <a href="#premise">测评介绍</a>
+      <a href="#dimensions">五个维度</a>
+      <a href="#atlas">人格图鉴</a>
+    </nav>
+    <div class="head-actions">
+      <button class="btn btn-gold btn-sm home-only" type="button" data-start>
+        开始测评
+        <svg class="icon arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </button>
+      <button class="text-btn quiz-only" id="quizExit" type="button" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+        退出测评
+      </button>
+      <div class="head-result-actions result-only" hidden>
+        <button class="text-btn" id="headEdit" type="button">修改答案</button>
+        <button class="btn btn-gold btn-sm" id="headRestart" type="button">重新测试</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ============ HOME ============ -->
+  <section class="screen screen-home" id="screen-home">
+    <div class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow">IDENTITY V LEAGUE · PERSONA ARCHIVE</p>
+        <h1>你的赛场人格，<span class="accent">是哪一种选手？</span></h1>
+        <p class="hero-lede">
+          有人在密码机前安静地改写结局，有人在板窗之间把不可能遛成可能。以第五人格职业赛场的<strong>位置语言</strong>为线索，用 15 道情境题，读出你的决策方式、协作习惯与逆风反应。
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-gold" type="button" data-start>
+            开始 15 道题
+            <svg class="icon arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </button>
+          <a class="btn btn-ghost" href="#atlas">先看人格图鉴</a>
+        </div>
+        <div class="hero-meta" aria-label="测评信息">
+          <span><strong>15</strong> 道情境题</span>
+          <span><strong>05</strong> 个维度</span>
+          <span><strong>06</strong> 种人格</span>
+          <span><strong>0</strong> 随机结果</span>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="float-chip chip-a"><small>FIELD NOTE 01</small><strong>观察 · 拆解 · 推演</strong></div>
+        <div class="float-chip chip-b"><small>FIELD NOTE 02</small><strong>逆风，才见底色</strong></div>
+        <svg class="hero-svg" viewBox="0 0 520 690" role="img" aria-label="原创插画：一位戴耳机的赛场观察者，置身于金色拱形画框、时钟与植物纹样之间">
+          <defs>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ead8ad"/>
+              <stop offset=".38" stop-color="#c6a05c"/>
+              <stop offset=".68" stop-color="#9a7431"/>
+              <stop offset="1" stop-color="#6f501e"/>
+            </linearGradient>
+            <linearGradient id="goldSoft" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e6d2a2"/>
+              <stop offset="1" stop-color="#9b7533"/>
+            </linearGradient>
+            <radialGradient id="ivoryGlow" cx="50%" cy="36%" r="68%">
+              <stop offset="0" stop-color="#fffdf8"/>
+              <stop offset=".62" stop-color="#f9f3e7"/>
+              <stop offset="1" stop-color="#efe5d1"/>
+            </radialGradient>
+            <radialGradient id="faceShade" cx="42%" cy="35%" r="70%">
+              <stop offset="0" stop-color="#fffaf0"/>
+              <stop offset="1" stop-color="#ecdfc8"/>
+            </radialGradient>
+            <filter id="heroShadow" x="-25%" y="-20%" width="150%" height="150%">
+              <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#6b4e1e" flood-opacity=".16"/>
+            </filter>
+            <clipPath id="archClip">
+              <path d="M96 592V210c0-80 64-142 164-142s164 62 164 142v382z"/>
+            </clipPath>
+          </defs>
+
+          <g filter="url(#heroShadow)">
+            <path d="M80 610V208C80 116 144 58 260 58s180 58 180 150v402z" fill="#fcf8ef" stroke="url(#goldGrad)" stroke-width="1.4"/>
+            <path d="M96 592V210c0-80 64-142 164-142s164 62 164 142v382" fill="none" stroke="rgba(155,117,51,.45)" stroke-width=".8"/>
+            <path d="M108 592V212c0-72 58-130 152-130s152 58 152 130v380" fill="none" stroke="rgba(155,117,51,.22)" stroke-width=".7"/>
+          </g>
+
+          <g clip-path="url(#archClip)">
+            <rect x="96" y="66" width="328" height="530" fill="url(#ivoryGlow)"/>
+            <circle cx="260" cy="252" r="178" fill="none" stroke="rgba(176,138,69,.08)" stroke-width="34"/>
+            <circle cx="260" cy="252" r="150" fill="none" stroke="rgba(176,138,69,.34)" stroke-width="9" stroke-dasharray="1 14.4"/>
+            <circle cx="260" cy="252" r="140" fill="none" stroke="rgba(176,138,69,.2)" stroke-width=".8"/>
+
+            <g class="hero-clock">
+              <circle cx="260" cy="252" r="123" fill="none" stroke="rgba(155,117,51,.26)" stroke-width=".8" stroke-dasharray="2 7"/>
+              <text x="260" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="rgba(124,90,34,.62)">XII</text>
+              <text x="382" y="257" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="rgba(124,90,34,.62)">III</text>
+              <text x="260" y="382" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="rgba(124,90,34,.62)">VI</text>
+              <text x="138" y="257" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="rgba(124,90,34,.62)">IX</text>
+              <path d="M260 252L260 160" stroke="rgba(124,90,34,.45)" stroke-width="1"/>
+              <path d="M260 252l60 28" stroke="rgba(124,90,34,.3)" stroke-width=".8"/>
+              <circle cx="260" cy="252" r="2.6" fill="#8a6628"/>
+            </g>
+
+            <ellipse cx="260" cy="252" rx="194" ry="76" fill="none" stroke="rgba(176,138,69,.18)" stroke-width=".8" transform="rotate(-16 260 252)" stroke-dasharray="3 7"/>
+            <ellipse cx="260" cy="252" rx="200" ry="58" fill="none" stroke="rgba(176,138,69,.13)" stroke-width=".7" transform="rotate(26 260 252)"/>
+
+            <g fill="rgba(176,138,69,.55)">
+              <path d="M128 166l2.4 5.8 5.8 2.4-5.8 2.4-2.4 5.8-2.4-5.8-5.8-2.4 5.8-2.4z"/>
+              <path d="M394 196l1.8 4.4 4.4 1.8-4.4 1.8-1.8 4.4-1.8-4.4-4.4-1.8 4.4-1.8z"/>
+              <path d="M142 354l1.4 3.4 3.4 1.4-3.4 1.4-1.4 3.4-1.4-3.4-3.4-1.4 3.4-1.4z"/>
+              <path d="M374 390l2 4.8 4.8 2-4.8 2-2 4.8-2-4.8-4.8-2 4.8-2z"/>
+              <circle cx="112" cy="268" r="1.6"/>
+              <circle cx="412" cy="326" r="1.4"/>
+            </g>
+
+            <g class="hero-figure">
+              <path d="M260 336c-20 0-34 14-38 37l-8 38c-1 7 4 13 11 13h70c7 0 12-6 11-13l-8-38c-4-23-18-37-38-37z" fill="#e8dcc6" stroke="#2a251c" stroke-width="1.1"/>
+              <path d="M246 348l14 18 14-18 16 12-30 48-30-48z" fill="#fbf5e8" stroke="#2a251c" stroke-width="1.1"/>
+              <path d="M143 610c4-99 44-178 102-202l15 22 15-22c58 24 98 103 102 202z" fill="#201c16" stroke="#2a251c" stroke-width="1.3"/>
+              <path d="M143 610c4-99 44-178 102-202l7 10c-49 32-82 106-87 192z" fill="rgba(255,255,255,.035)"/>
+              <path d="M245 386l-45 68-32-21 50-84 18 25z" fill="#2d2820" stroke="#4b4233" stroke-width=".8"/>
+              <path d="M275 386l45 68 32-21-50-84-18 25z" fill="#2d2820" stroke="#4b4233" stroke-width=".8"/>
+              <path d="M251 384l9 53 9-53" fill="none" stroke="rgba(223,197,141,.35)" stroke-width=".8"/>
+              <path d="M210 430c15 9 35 14 50 14s35-5 50-14" fill="none" stroke="rgba(223,197,141,.25)" stroke-width=".8"/>
+              <path d="M316 402c16 18 24 40 28 67" fill="none" stroke="rgba(223,197,141,.28)" stroke-width=".8"/>
+              <path d="M205 402c-16 18-24 40-28 67" fill="none" stroke="rgba(223,197,141,.28)" stroke-width=".8"/>
+              <path d="M300 386c14 20 23 44 29 76" fill="none" stroke="url(#goldGrad)" stroke-width="1"/>
+              <path d="M220 386c-14 20-23 44-29 76" fill="none" stroke="url(#goldGrad)" stroke-width="1"/>
+              <g>
+                <path d="M299 392c11 17 18 38 24 64" fill="none" stroke="rgba(223,197,141,.65)" stroke-width=".9" stroke-dasharray="1.5 3.5"/>
+                <circle cx="326" cy="468" r="18" fill="#181510" stroke="url(#goldGrad)" stroke-width="1.4"/>
+                <circle cx="326" cy="468" r="13" fill="none" stroke="rgba(223,197,141,.4)" stroke-width=".7"/>
+                <path d="M326 456v12l7 5" fill="none" stroke="#d9bc7c" stroke-width=".9"/>
+                <circle cx="326" cy="468" r="1.3" fill="#d9bc7c"/>
+              </g>
+              <path d="M260 426l6 7-6 7-6-7z" fill="url(#goldGrad)"/>
+              <path d="M236 458c4 5 10 8 16 9M284 467c6-1 12-4 16-9" fill="none" stroke="rgba(223,197,141,.35)" stroke-width=".8"/>
+              <path d="M260 326v-18" stroke="#2a251c" stroke-width="1.1"/>
+              <ellipse cx="260" cy="258" rx="55" ry="65" fill="url(#faceShade)" stroke="#2a251c" stroke-width="1.2"/>
+              <path d="M205 245c-1-46 21-77 55-77s56 31 55 77c-8-25-24-40-46-45-23 13-43 17-64 16z" fill="#252019" stroke="#221d16" stroke-width=".8"/>
+              <path d="M210 235c-7 32-3 59 10 80M310 235c7 32 3 59-10 80" fill="none" stroke="#252019" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M206 239c-5 26-1 50 10 69" fill="none" stroke="rgba(223,197,141,.28)" stroke-width=".8"/>
+              <path d="M314 239c5 26 1 50-10 69" fill="none" stroke="rgba(223,197,141,.28)" stroke-width=".8"/>
+              <path d="M235 247c5-4 12-4 17 0M268 247c5-4 12-4 17 0" fill="none" stroke="#2a251c" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M237 258c4 3 9 3 13 0M270 258c4 3 9 3 13 0" fill="none" stroke="#2a251c" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M260 254v22c0 4-3 6-7 7" fill="none" stroke="#2a251c" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M248 295c8 5 16 5 24 0" fill="none" stroke="#2a251c" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M244 276c3 2 6 2 9 0" fill="none" stroke="rgba(124,90,34,.5)" stroke-width=".8"/>
+              <path d="M279 272l2.3 5 5 2.3-5 2.3-2.3 5-2.3-5-5-2.3 5-2.3z" fill="rgba(176,138,69,.75)"/>
+              <path d="M195 258c0-27 29-48 65-48s65 21 65 48" fill="none" stroke="#252019" stroke-width="5.2" stroke-linecap="round"/>
+              <path d="M195 258c0-27 29-48 65-48s65 21 65 48" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round"/>
+              <rect x="174" y="233" width="31" height="55" rx="15" fill="#252019" stroke="url(#goldGrad)" stroke-width="1.3"/>
+              <rect x="315" y="233" width="31" height="55" rx="15" fill="#252019" stroke="url(#goldGrad)" stroke-width="1.3"/>
+              <rect x="181" y="241" width="17" height="39" rx="8.5" fill="none" stroke="rgba(223,197,141,.42)" stroke-width=".8"/>
+              <rect x="322" y="241" width="17" height="39" rx="8.5" fill="none" stroke="rgba(223,197,141,.42)" stroke-width=".8"/>
+              <path d="M190 289c8 8 13 21 12 34" fill="none" stroke="#252019" stroke-width="1.8"/>
+              <circle cx="202" cy="326" r="3.3" fill="#252019" stroke="rgba(223,197,141,.5)" stroke-width=".6"/>
+              <path d="M203 330c1 8-4 14-13 17" fill="none" stroke="#252019" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M203 330c1 8-4 14-13 17" fill="none" stroke="rgba(223,197,141,.28)" stroke-width=".5" stroke-linecap="round"/>
+            </g>
+
+            <g class="hero-moth-a" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity=".9">
+              <path d="M153 208c-16-18-31-12-29 5 2 14 16 17 29 8M153 208c13-20 30-16 30 2 0 14-15 18-30 11"/>
+              <path d="M153 208v21" stroke="rgba(124,90,34,.6)"/>
+              <path d="M149 202l-6-10M157 202l6-10" stroke="rgba(124,90,34,.55)" stroke-width=".8"/>
+            </g>
+            <g class="hero-moth-b" fill="none" stroke="url(#goldGrad)" stroke-width=".9" opacity=".78">
+              <path d="M384 328c-12-14-24-9-23 4 1 11 12 13 23 6M384 328c11-15 23-12 23 1 0 11-12 14-23 8"/>
+              <path d="M384 328v16" stroke="rgba(124,90,34,.55)"/>
+            </g>
+
+            <g fill="none" stroke="rgba(155,117,51,.36)" stroke-width=".9">
+              <path d="M118 574c20-9 24-28 40-38 14-9 26-2 22 11-3 10-17 12-24 5-8-9 3-24 18-28 12-3 22 2 27 10"/>
+              <path d="M118 574c13 2 23 6 30 13M402 574c-20-9-24-28-40-38-14-9-26-2-22 11 3 10 17 12 24 5 8-9-3-24-18-28-12-3-22 2-27 10"/>
+              <path d="M402 574c-13 2-23 6-30 13"/>
+              <path d="M142 548c8 4 14 11 17 19M378 548c-8 4-14 11-17 19"/>
+            </g>
+          </g>
+
+          <g fill="none" stroke="url(#goldGrad)" stroke-width="1.1">
+            <path d="M80 286c-18 0-27-11-27-27M80 312c-28 0-43-16-43-43M440 286c18 0 27-11 27-27M440 312c28 0 43-16 43-43"/>
+            <path d="M80 542c-18 0-27 11-27 27M440 542c18 0 27 11 27 27"/>
+            <path d="M260 58v-17M260 58l-8-9M260 58l8-9"/>
+            <path d="M260 602v13M252 610l8 8 8-8"/>
+          </g>
+          <g fill="none" stroke="rgba(155,117,51,.55)" stroke-width=".8">
+            <path d="M260 40l4 7-4 7-4-7z"/>
+            <path d="M104 180c-8 6-12 15-12 26M416 180c8 6 12 15 12 26"/>
+          </g>
+          <text x="260" y="646" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="4.2" fill="#8f6a2c">IVL · PERSONA</text>
+          <text x="260" y="666" text-anchor="middle" font-family="Georgia,serif" font-size="6.5" letter-spacing="3.2" fill="rgba(124,90,34,.64)">OBSERVE · DECIDE · CONNECT</text>
+          <path d="M180 678h160" stroke="rgba(155,117,51,.32)" stroke-width=".7"/>
+          <circle cx="180" cy="678" r="1.5" fill="rgba(155,117,51,.5)"/>
+          <circle cx="340" cy="678" r="1.5" fill="rgba(155,117,51,.5)"/>
+        </svg>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">SCROLL</div>
+    </div>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>OBSERVE 观察</span><span>DECODE 破译</span><span>KITE 牵制</span><span>RESCUE 救援</span><span>SUPPORT 辅助</span><span>CONTROL 控场</span><span>NO RANDOM 无随机</span><span>PERSONA ARCHIVE 人格档案</span>
+        </div>
+        <div class="ticker-group">
+          <span>OBSERVE 观察</span><span>DECODE 破译</span><span>KITE 牵制</span><span>RESCUE 救援</span><span>SUPPORT 辅助</span><span>CONTROL 控场</span><span>NO RANDOM 无随机</span><span>PERSONA ARCHIVE 人格档案</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section premise" id="premise">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label"><span class="num">01</span>THE PREMISE</div>
+          <div>
+            <h2 class="section-title">赛场，是性格的<em>放大镜</em>。</h2>
+            <p class="section-lead">顺风局里，每个人看起来都很像。真正拉开差距的，是信息混乱时的判断、比分落后时的选择，以及队友沉默时你会不会开口。这个测评不问你“想成为谁”，而是观察你在具体情境里，下意识会怎么做。</p>
+          </div>
+        </div>
+        <div class="premise-grid">
+          <blockquote class="premise-quote">“你在逆风局里的<br>第一反应，<br>往往比顺风局<br>更接近真实的你。”</blockquote>
+          <div class="premise-body">
+            <p>我们把 IVL 赛场上最常见的五种位置语言——<strong>破译、牵制、救援、辅助、控场</strong>——拆成五个性格维度。它们不是五个“职业”，而是五种面对世界的方式：有人先理解，再行动；有人先行动，再理解；有人负责向前，有人负责让队伍不散。</p>
+            <p>15 道题都来自具体的赛场与日常情境。没有标准答案，也不存在“更高级的人格”。你只需要选择<strong>最接近第一反应</strong>的那一项。结果完全由你的选择计算，不含随机项，也不会预测你的真实比赛水平。</p>
+            <div class="note-list">
+              <div class="note-row"><span class="idx">01</span><p><strong>不是贴标签</strong>类型是一面镜子，不是一间牢房。它描述倾向，不定义上限。</p></div>
+              <div class="note-row"><span class="idx">02</span><p><strong>不是心理诊断</strong>这是一份原创的娱乐性自我探索测评，不构成专业心理评估或建议。</p></div>
+              <div class="note-row"><span class="idx">03</span><p><strong>不冒充真实选手</strong>结果以赛场位置为原型，不对应任何真实 IVL 选手，也不代表官方立场。</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat-band" aria-label="测评规格">
+          <div class="stat"><strong>05<sub>DIM</sub></strong><span>性格维度</span></div>
+          <div class="stat"><strong>15<sub>Q</sub></strong><span>情境题目</span></div>
+          <div class="stat"><strong>06<sub>TYPE</sub></strong><span>人格类型</span></div>
+          <div class="stat"><strong>0<sub>RANDOM</sub></strong><span>随机结果</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method" id="method">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label"><span class="num">02</span>THE METHOD</div>
+          <div>
+            <h2 class="section-title">三步，读出你的<em>赛场底牌</em>。</h2>
+            <p class="section-lead">没有复杂的量表，也没有玄学。你只需要凭直觉做完 15 道题，剩下的交给一套透明、固定的计分规则。</p>
+          </div>
+        </div>
+        <div class="method-grid">
+          <article class="method-card">
+            <span class="idx">STEP 01</span>
+            <h3>情境作答</h3>
+            <p>15 道题覆盖赛前准备、逆风局、团队冲突、能量消耗等真实场景。选择最接近你第一反应的一项，不必揣测“正确答案”。</p>
+          </article>
+          <article class="method-card">
+            <span class="idx">STEP 02</span>
+            <h3>五维计分</h3>
+            <p>每个选项对应一个主维度与一个关联维度。主维度 +2 分，关联维度 +1 分。五个维度各自独立累计，不做人群比较。</p>
+          </article>
+          <article class="method-card">
+            <span class="idx">STEP 03</span>
+            <h3>生成报告</h3>
+            <p>取得分最高的维度作为主类型；若前两名分差不超过 2 分，则判定为双核均衡的“全能自由人”。结果包含画像、盲区与行动建议。</p>
+          </article>
+        </div>
+        <div class="score-rule">
+          <div>
+            <p class="eyebrow">SCORING RULE</p>
+            <h3>计分规则，<br>明明白白。</h3>
+            <p>本测评不是知识测验，没有正确与错误答案；它也不使用随机数。你修改答案后，系统会重新计算，而不是保留旧结果。</p>
+          </div>
+          <div class="formula-list">
+            <div class="formula-row"><span class="n">01</span><p>每题 4 个选项，每个选项给<strong>主维度 +2 分</strong>、<strong>关联维度 +1 分</strong>；不选则不计分。</p></div>
+            <div class="formula-row"><span class="n">02</span><p>五个维度各有 12 次成为主维度的机会，单维满分固定为 <span class="code">24</span> 分。倾向指数 = 得分 ÷ 24。</p></div>
+            <div class="formula-row"><span class="n">03</span><p>最高分即主类型；若前两名相差 <span class="code">≤2</span> 分，则视为双核均衡，输出“全能自由人”。</p></div>
+            <div class="formula-row"><span class="n">04</span><p>倾向指数只表示你在本测试中的相对偏好，<strong>不是人群百分位</strong>，也不等同于能力高低。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dimensions" id="dimensions">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label"><span class="num">03</span>FIVE SIGNALS</div>
+          <div>
+            <h2 class="section-title">五种信号，<em>五种赢法</em>。</h2>
+            <p class="section-lead">同一场比赛，五个人看到的是五种不同的世界。你越常使用哪一种信号，它就越可能成为你的赛场底色。</p>
+          </div>
+        </div>
+        <div class="dim-grid">
+          <article class="dim-card">
+            <span class="idx">D / 01</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-decode"/></svg>
+            <h3>破译</h3>
+            <p class="en">DECODE · 信息与秩序</p>
+            <p>习惯先理解再行动。擅长收集信息、拆解问题、长期专注，把混乱变成步骤。</p>
+            <div class="dim-traits"><span>理性</span><span>专注</span><span>规划</span></div>
+          </article>
+          <article class="dim-card">
+            <span class="idx">K / 02</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-kite"/></svg>
+            <h3>牵制</h3>
+            <p class="en">KITE · 变化与自由</p>
+            <p>对变化有天然的亲近感。擅长临场应变、打破僵局，在规则边缘找到新的路线。</p>
+            <div class="dim-traits"><span>灵活</span><span>自主</span><span>冒险</span></div>
+          </article>
+          <article class="dim-card">
+            <span class="idx">R / 03</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-rescue"/></svg>
+            <h3>救援</h3>
+            <p class="en">RESCUE · 勇气与担当</p>
+            <p>事情发生时先解决。关键时刻敢向前一步，愿意承担风险，也能在压力下保持行动。</p>
+            <div class="dim-traits"><span>勇气</span><span>行动</span><span>抗压</span></div>
+          </article>
+          <article class="dim-card">
+            <span class="idx">S / 04</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-support"/></svg>
+            <h3>辅助</h3>
+            <p class="en">SUPPORT · 共情与联结</p>
+            <p>擅长读懂空气。在意团队氛围，愿意补位、倾听与托底，让一群人真正成为队伍。</p>
+            <div class="dim-traits"><span>共情</span><span>协作</span><span>耐心</span></div>
+          </article>
+          <article class="dim-card">
+            <span class="idx">C / 05</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-control"/></svg>
+            <h3>控场</h3>
+            <p class="en">CONTROL · 全局与掌控</p>
+            <p>习惯往远处看。擅长判断节奏、分配资源、做出取舍，并为最终结果承担责任。</p>
+            <div class="dim-traits"><span>策略</span><span>决断</span><span>领导</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section atlas" id="atlas">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label"><span class="num">04</span>PERSONA ATLAS</div>
+          <div>
+            <h2 class="section-title">六种人格，<em>六种金色</em>。</h2>
+            <p class="section-lead">五种位置原型，加上一种难以被单一定义的“自由位”。你的答案会把你带到其中一种，或者两种气质的交界处。</p>
+          </div>
+        </div>
+        <div class="atlas-grid">
+          <article class="atlas-card">
+            <div class="atlas-top"><span class="idx">01 / SURVIVOR</span><svg class="icon" aria-hidden="true"><use href="#i-decode"/></svg></div>
+            <p class="atlas-pos">破译位 · 求生者</p>
+            <h3>静默破译者</h3>
+            <p class="atlas-en">THE DECODER</p>
+            <p class="atlas-tagline">把混乱拆成步骤，<br>把压力译成答案。</p>
+            <div class="atlas-keywords"><span>专注</span><span>理性</span><span>秩序</span><span>长期主义</span></div>
+          </article>
+          <article class="atlas-card">
+            <div class="atlas-top"><span class="idx">02 / SURVIVOR</span><svg class="icon" aria-hidden="true"><use href="#i-kite"/></svg></div>
+            <p class="atlas-pos">牵制位 · 求生者</p>
+            <h3>自由牵制者</h3>
+            <p class="atlas-en">THE KITER</p>
+            <p class="atlas-tagline">不按剧本走，<br>是因为路不止一条。</p>
+            <div class="atlas-keywords"><span>灵活</span><span>应变</span><span>自由</span><span>破局</span></div>
+          </article>
+          <article class="atlas-card">
+            <div class="atlas-top"><span class="idx">03 / SURVIVOR</span><svg class="icon" aria-hidden="true"><use href="#i-rescue"/></svg></div>
+            <p class="atlas-pos">救援位 · 求生者</p>
+            <h3>逆风救援者</h3>
+            <p class="atlas-en">THE RESCUER</p>
+            <p class="atlas-tagline">别人后退的时候，<br>你刚好向前一步。</p>
+            <div class="atlas-keywords"><span>勇气</span><span>担当</span><span>行动</span><span>抗压</span></div>
+          </article>
+          <article class="atlas-card">
+            <div class="atlas-top"><span class="idx">04 / SURVIVOR</span><svg class="icon" aria-hidden="true"><use href="#i-support"/></svg></div>
+            <p class="atlas-pos">辅助位 · 求生者</p>
+            <h3>温柔辅助者</h3>
+            <p class="atlas-en">THE SUPPORT</p>
+            <p class="atlas-tagline">你让一支队伍，<br>成为彼此的后背。</p>
+            <div class="atlas-keywords"><span>共情</span><span>联结</span><span>补位</span><span>耐心</span></div>
+          </article>
+          <article class="atlas-card atlas-card--dark">
+            <div class="atlas-top"><span class="idx">05 / HUNTER</span><svg class="icon" aria-hidden="true"><use href="#i-control"/></svg></div>
+            <p class="atlas-pos">监管位 · 监管者</p>
+            <h3>全局执棋者</h3>
+            <p class="atlas-en">THE CONTROLLER</p>
+            <p class="atlas-tagline">你看的不是这一秒，<br>而是三步之后。</p>
+            <div class="atlas-keywords"><span>策略</span><span>决断</span><span>掌控</span><span>领导</span></div>
+          </article>
+          <article class="atlas-card atlas-card--gold">
+            <div class="atlas-top"><span class="idx">06 / FLEX</span><svg class="icon" aria-hidden="true"><use href="#i-flex"/></svg></div>
+            <p class="atlas-pos">自由位 · 全能补位</p>
+            <h3>全能自由人</h3>
+            <p class="atlas-en">THE FLEX</p>
+            <p class="atlas-tagline">哪里需要你，<br>你就能成为哪一块拼图。</p>
+            <div class="atlas-keywords"><span>适配</span><span>均衡</span><span>学习</span><span>弹性</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-panel">
+          <div class="cta-inner">
+            <p class="eyebrow">BEGIN THE ARCHIVE</p>
+            <h2>翻开你的<br><em>赛场底牌</em>。</h2>
+            <p>15 道题，5 个维度，1 份只属于你的赛场人格报告。不需要注册，不会上传答案，也没有随机结果。</p>
+            <div class="cta-actions">
+              <button class="btn btn-gold" type="button" data-start>
+                开始测评
+                <svg class="icon arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </button>
+              <a class="link-underline" href="#dimensions" style="color:#c8b89c">再看看五个维度</a>
+            </div>
+            <p class="cta-meta">约 3 分钟 · 可随时返回修改 · 结果完全由你的选择计算</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <div class="container">
+        <div class="foot-main">
+          <div class="foot-brand">
+            <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 2.5 45.5 24 24 45.5 2.5 24Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+              <path d="M24 9.5 38.5 24 24 38.5 9.5 24Z" fill="none" stroke="currentColor" stroke-width=".8" opacity=".62"/>
+              <path d="M17.5 19.5 24 29l6.5-9.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            <div><strong>IVL PERSONA</strong><small>赛场人格档案 · 原创企划</small></div>
+          </div>
+          <div class="foot-links">
+            <a href="#premise">测评介绍</a>
+            <a href="#method">计分规则</a>
+            <a href="#dimensions">五个维度</a>
+            <a href="#atlas">人格图鉴</a>
+            <button type="button" data-start>开始测评</button>
+          </div>
+          <div class="foot-mark">EST. 2026 / NO.05</div>
+        </div>
+        <p class="disclaimer"><strong>关于本测评：</strong>本页面为原创娱乐性人格自评，以《第五人格》职业联赛（IVL）的位置分工与赛场情境为灵感，不隶属于网易、网易游戏、《第五人格》或 IVL 官方，也不代表任何真实选手、战队或教练。本测评未经过心理测量学信效度检验，结果不构成心理诊断、医疗建议或对真实竞技水平的预测。所有题目、计分与文案均为原创；答案只在当前浏览器内计算，不会上传。</p>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="screen screen-quiz" id="screen-quiz" hidden>
+    <div class="container">
+      <div class="quiz-wrap">
+        <div class="quiz-main">
+          <div class="quiz-leadline">
+            <p class="eyebrow">PERSONA ASSESSMENT</p>
+            <span class="answered-top" id="answeredTop">已答 0 / 15</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="答题进度" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progressTrack">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <div class="review-banner" id="reviewBanner" hidden>
+            <span><strong>修改模式</strong>：你可以回到任意题目调整答案，完成后重新生成报告。</span>
+            <button class="btn btn-ghost" type="button" id="reviewFinish">重新生成结果</button>
+          </div>
+
+          <div class="mobile-map" aria-label="题目导航">
+            <div class="map-grid" id="mobileMap"></div>
+          </div>
+
+          <div class="quiz-card" id="quizCard">
+            <div class="quiz-meta">
+              <span class="quiz-count">QUESTION<b id="currentNum">01</b><span class="total">/ 15</span></span>
+              <span class="quiz-tag" id="questionTag">赛前准备</span>
+            </div>
+            <h2 class="quiz-question" id="questionText" tabindex="-1" aria-live="polite">正在载入题目……</h2>
+            <p class="quiz-hint">选择最接近你第一反应的一项。没有对错，也不必揣测“标准答案”。</p>
+            <div class="options" id="options" role="radiogroup" aria-labelledby="questionText"></div>
+            <div class="quiz-nav">
+              <button class="btn btn-ghost" type="button" id="prevBtn">
+                <svg class="icon" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>
+                上一题
+              </button>
+              <div class="quiz-nav-right">
+                <span class="answered-hint" id="answeredHint">已答 0 / 15</span>
+                <button class="btn btn-gold" type="button" id="nextBtn">
+                  下一题
+                  <svg class="icon arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="quiz-footnote">凭第一直觉作答 · 答案仅保存在当前页面 · 可随时返回修改</p>
+          </div>
+        </div>
+
+        <aside class="quiz-side" aria-label="测评进度与题目导航">
+          <div class="side-card">
+            <p class="eyebrow no-line">YOUR PROGRESS</p>
+            <div class="ring-wrap">
+              <svg viewBox="0 0 132 132" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#8a6628"/>
+                    <stop offset="1" stop-color="#d9bc7c"/>
+                  </linearGradient>
+                </defs>
+                <circle class="ring-bg" cx="66" cy="66" r="58"/>
+                <circle class="ring-fill" id="ringFill" cx="66" cy="66" r="58" stroke-dasharray="0 364.4"/>
+              </svg>
+              <div class="ring-value"><strong id="ringValue">0%</strong><span>COMPLETE</span></div>
+            </div>
+            <p class="side-answered" id="sideAnswered">已作答 0 / 15</p>
+            <div class="side-divider"></div>
+            <p class="side-title">QUESTION MAP</p>
+            <div class="question-map" id="questionMap"></div>
+            <button class="btn btn-gold btn-wide btn-sm side-generate" type="button" id="sideGenerate" hidden>完成并查看结果</button>
+            <p class="side-note">点击题号可以跳转。未答完时查看结果，会先提醒你补齐答案。</p>
+            <p class="side-tip">“先选第一反应，<br>再回头看第二反应。”</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section class="screen screen-result" id="screen-result" hidden>
+    <div class="container">
+      <div class="result-toolbar">
+        <p class="eyebrow">PERSONA REPORT · 你的赛场人格报告</p>
+        <div class="result-actions">
+          <button class="btn btn-ghost btn-sm" type="button" id="editAnswers">
+            <svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg>
+            修改答案
+          </button>
+          <button class="btn btn-ghost btn-sm" type="button" id="restartBtn">
+            <svg class="icon" aria-hidden="true"><use href="#i-restart"/></svg>
+            重新测试
+          </button>
+          <button class="btn btn-gold btn-sm" type="button" id="printBtn">
+            <svg class="icon" aria-hidden="true"><use href="#i-print"/></svg>
+            打印 / 保存 PDF
+          </button>
+        </div>
+      </div>
+      <div id="resultContent"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="toast-dot" aria-hidden="true"></span>
+  <span id="toastText"></span>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalText">
+    <p class="eyebrow no-line">PLEASE CONFIRM</p>
+    <h3 id="modalTitle">退出本次测评？</h3>
+    <p id="modalText">当前作答不会保存，退出后需要重新开始。</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" type="button" id="modalCancel">继续作答</button>
+      <button class="btn btn-gold" type="button" id="modalConfirm">确认退出</button>
+    </div>
+  </div>
+</div>
+
+<noscript>
+  <div style="position:fixed;inset:auto 0 0 0;z-index:200;background:#181510;color:#f7f3ea;padding:14px 20px;text-align:center;font-size:13px">本测评需要启用 JavaScript 才能作答与计算结果。</div>
+</noscript>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     Data: five signals
+     --------------------------------------------------------- */
+  const DIMENSIONS = [
+    { key: 'decode',  name: '破译', en: 'DECODE',  tag: '信息与秩序', icon: 'i-decode'  },
+    { key: 'kite',    name: '牵制', en: 'KITE',    tag: '变化与自由', icon: 'i-kite'    },
+    { key: 'rescue',  name: '救援', en: 'RESCUE',  tag: '勇气与担当', icon: 'i-rescue'  },
+    { key: 'support', name: '辅助', en: 'SUPPORT', tag: '共情与联结', icon: 'i-support' },
+    { key: 'control', name: '控场', en: 'CONTROL', tag: '全局与掌控', icon: 'i-control' }
+  ];
+  const DIM_KEYS = DIMENSIONS.map(d => d.key);
+  const DIM_BY_KEY = Object.fromEntries(DIMENSIONS.map(d => [d.key, d]));
+
+  /* ---------------------------------------------------------
+     Data: 15 scenario questions
+     Every option gives +2 to its main signal and +1 to its
+     related signal. Each signal is main 12 times and related
+     12 times, so every dimension has the same ceiling (24).
+     --------------------------------------------------------- */
+  const QUIZ = [
+    {
+      tag: '赛前准备',
+      text: '赛前最后一小时，你通常会怎么过？',
+      options: [
+        { text: '把地图路线、对手习惯和关键时间点整理成一份清单。', main: 'decode',  sub: 'kite'    },
+        { text: '开自定义练几轮走位，让手感先热起来。',             main: 'kite',    sub: 'rescue'  },
+        { text: '检查救援路线，提前想好逆风局该怎么打。',           main: 'rescue',  sub: 'control' },
+        { text: '和队友对一遍整体节奏，明确每一波该做什么。',       main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '信息混乱',
+      text: '开局 30 秒，队友的报点乱成一团，你会先做什么？',
+      options: [
+        { text: '快速判断密码机分布，决定先修哪一台。',         main: 'decode',  sub: 'kite'    },
+        { text: '先拉开距离，给自己保留转点和观察空间。',       main: 'kite',    sub: 'support' },
+        { text: '把信息复述一遍，帮大家统一口径。',             main: 'support', sub: 'control' },
+        { text: '接管指挥，直接指定谁去哪里。',                 main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '高光时刻',
+      text: '你更享受哪一种高光时刻？',
+      options: [
+        { text: '最后一台密码机压好，极限开机完成翻盘。',           main: 'decode',  sub: 'kite'    },
+        { text: '在板窗区连续牵制，把对手的节奏彻底打乱。',         main: 'kite',    sub: 'rescue'  },
+        { text: '卡半救人，把队友从椅子上稳稳捞下来。',             main: 'rescue',  sub: 'support' },
+        { text: '关键治疗和辅助到位，让队友满状态回到战场。',       main: 'support', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '计划突变',
+      text: '朋友临时改了计划，你的第一反应更接近？',
+      options: [
+        { text: '行，那就换条路，边走边看。',                       main: 'kite',    sub: 'rescue'  },
+        { text: '直接说“走，先试试看”，不想把时间耗在讨论上。',     main: 'rescue',  sub: 'support' },
+        { text: '先留意同行的人有没有被这个变化影响。',             main: 'support', sub: 'control' },
+        { text: '重新排一版时间表，把影响压到最小。',               main: 'control', sub: 'kite'    }
+      ]
+    },
+    {
+      tag: '未知领域',
+      text: '面对一个完全陌生的游戏或副本，你会先：',
+      options: [
+        { text: '读攻略、算数值，弄明白机制再动手。',               main: 'decode',  sub: 'rescue'  },
+        { text: '直接开一局，在试错里找感觉。',                     main: 'rescue',  sub: 'support' },
+        { text: '拉上朋友一起，边玩边交换发现。',                   main: 'support', sub: 'control' },
+        { text: '研究机制漏洞，找一条最优通关路径。',               main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '意见僵局',
+      text: '团队意见僵住时，你通常会：',
+      options: [
+        { text: '摆出数据和事实，帮大家对齐判断。',                 main: 'decode',  sub: 'kite'    },
+        { text: '提出一个谁都没试过的新方案。',                     main: 'kite',    sub: 'rescue'  },
+        { text: '站出来拍板：先执行，赛后复盘。',                   main: 'rescue',  sub: 'control' },
+        { text: '把两套方案的成本收益拆开，选全局更优的。',         main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '逆风局',
+      text: '连续失误、比分落后时，你的状态更接近：',
+      options: [
+        { text: '关掉情绪，回到最稳的基本功。',                     main: 'decode',  sub: 'kite'    },
+        { text: '换一套更熟的打法，先把手感找回来。',               main: 'kite',    sub: 'support' },
+        { text: '先鼓励队友，别让气氛继续往下掉。',                 main: 'support', sub: 'control' },
+        { text: '叫暂停，重新排接下来的战术。',                     main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '团队角色',
+      text: '你更愿意在团队里承担哪一种角色？',
+      options: [
+        { text: '最需要耐心和精度的核心工作。',                     main: 'decode',  sub: 'kite'    },
+        { text: '最需要临场反应的自由位置。',                       main: 'kite',    sub: 'rescue'  },
+        { text: '最危险、但能救全队的那个位置。',                   main: 'rescue',  sub: 'support' },
+        { text: '最需要照顾大家情绪的角色。',                       main: 'support', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '意外打断',
+      text: '计划被意外打断时，你会：',
+      options: [
+        { text: '迅速切换路线，边跑边找机会。',                     main: 'kite',    sub: 'rescue'  },
+        { text: '迎上去解决，不想拖到最后。',                       main: 'rescue',  sub: 'support' },
+        { text: '先确认身边人的状态，再决定下一步。',               main: 'support', sub: 'control' },
+        { text: '立刻重新评估全局，调整目标。',                     main: 'control', sub: 'kite'    }
+      ]
+    },
+    {
+      tag: '靠谱队友',
+      text: '你判断一个队友“靠谱”，最看重什么？',
+      options: [
+        { text: '稳定、少失误、说到做到。',                         main: 'decode',  sub: 'rescue'  },
+        { text: '关键时刻敢冲、敢背锅。',                           main: 'rescue',  sub: 'support' },
+        { text: '会沟通、愿意补位、情绪稳定。',                     main: 'support', sub: 'control' },
+        { text: '有大局观、能带节奏。',                             main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '冲突处理',
+      text: '收到一条措辞很冲的消息，你会：',
+      options: [
+        { text: '先看事实，判断对方说得对不对。',                   main: 'decode',  sub: 'kite'    },
+        { text: '直接回问：你想表达什么？',                         main: 'kite',    sub: 'rescue'  },
+        { text: '先处理问题，不让冲突继续扩大。',                   main: 'rescue',  sub: 'control' },
+        { text: '拉个会，把规则和边界讲清楚。',                     main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '能量消耗',
+      text: '你最容易在哪种情况下耗尽力？',
+      options: [
+        { text: '信息不足，却要立刻做决定。',                       main: 'decode',  sub: 'kite'    },
+        { text: '长时间重复，看不到任何变化。',                     main: 'kite',    sub: 'support' },
+        { text: '团队气氛压抑，没有人愿意说话。',                   main: 'support', sub: 'control' },
+        { text: '方向反复变，自己完全失去掌控。',                   main: 'control', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '能力强化',
+      text: '如果只能强化一项能力，你会选：',
+      options: [
+        { text: '更精准的判断和更稳的执行。',                       main: 'decode',  sub: 'kite'    },
+        { text: '更快的反应和更强的身法。',                         main: 'kite',    sub: 'rescue'  },
+        { text: '更大的胆量和更强的抗压。',                         main: 'rescue',  sub: 'support' },
+        { text: '更好的共情和更顺的沟通。',                         main: 'support', sub: 'decode'  }
+      ]
+    },
+    {
+      tag: '赛后复盘',
+      text: '赛后复盘，你最先看的是：',
+      options: [
+        { text: '自己的高光操作和失误瞬间。',                       main: 'kite',    sub: 'rescue'  },
+        { text: '关键团战的决策与执行。',                           main: 'rescue',  sub: 'support' },
+        { text: '团队沟通和配合的细节。',                           main: 'support', sub: 'control' },
+        { text: '整体节奏、资源交换和胜负手。',                     main: 'control', sub: 'kite'    }
+      ]
+    },
+    {
+      tag: '理想的胜利',
+      text: '你理想中的“赢”是：',
+      options: [
+        { text: '靠准备和实力，稳稳拿下。',                         main: 'decode',  sub: 'rescue'  },
+        { text: '在绝境里拼出一线生机。',                           main: 'rescue',  sub: 'support' },
+        { text: '和信任的人一起站到最后。',                         main: 'support', sub: 'control' },
+        { text: '用一套漂亮战术彻底压制对手。',                     main: 'control', sub: 'decode'  }
+      ]
+    }
+  ];
+  const TOTAL = QUIZ.length;
+
+  const DIM_MAX = Object.fromEntries(DIMENSIONS.map(d => [
+    d.key,
+    QUIZ.reduce((sum, q) => {
+      const best = Math.max(...q.options.map(o => o.main === d.key ? 2 : (o.sub === d.key ? 1 : 0)));
+      return sum + best;
+    }, 0)
+  ]));
+
+  /* ---------------------------------------------------------
+     Data: six personas
+     --------------------------------------------------------- */
+  const TYPES = {
+    decode: {
+      key: 'decode', index: '01', icon: 'i-decode',
+      name: '静默破译者', en: 'THE DECODER',
+      position: '破译位 · 求生者', side: 'SURVIVOR',
+      tagline: '把混乱拆成步骤，把压力译成答案。',
+      keywords: ['专注', '理性', '秩序', '长期主义'],
+      profile: [
+        '你是那种先把局面看清楚，再决定要不要出手的人。面对陌生问题，你会自然地收集信息、拆分变量、寻找规律；比起一时的热闹，你更在意事情能不能稳定地做对。你不太喜欢把情绪放在台面上，但你的可靠，往往就是团队最安心的底色。',
+        '你的专注是一把双刃剑。它让你在复杂局面里保持清醒，也可能让你在需要快速行动时反复确认。你真正需要的，不是更多准备，而是一个允许自己“先做再改”的出口。'
+      ],
+      strengths: [
+        { title: '复杂信息里的秩序感', text: '你能从杂乱的信息里迅速找到关键变量，把模糊的问题拆成可执行的步骤。' },
+        { title: '稳定的长期专注', text: '别人被情绪带跑时，你仍能回到事实和基本功，是团队下限的保障。' },
+        { title: '冷静的复盘能力', text: '你擅长从结果反推原因，让一次失误真正变成下一次的经验。' }
+      ],
+      blindspots: [
+        { title: '准备过载', text: '总想等信息齐全再行动，可能错过只有一次的机会窗口。' },
+        { title: '情绪表达偏少', text: '你习惯自己消化，容易被误解为冷淡、疏离或“什么都不在乎”。' },
+        { title: '不愿求助', text: '把独立当成默认选项，可能让自己默默承担了太多。' }
+      ],
+      pressure: '你会先关掉情绪，回到最熟悉的基本功，用降低变量的方式找回控制感。这是你的优势。但当局势要求冒险时，记得给自己一个“先试三分钟”的窗口：不是放弃谨慎，而是让判断在行动中获得新信息。',
+      partners: {
+        bestKey: 'support',
+        bestWhy: '辅助位能接住你没说出口的情绪，也能把团队的节奏柔化。你负责算清楚，他负责让大家愿意一起走。',
+        frictionKey: 'kite',
+        frictionWhy: '你嫌他太随性，他嫌你太谨慎。如果能把彼此的节奏提前说清楚，你们会成为最难预测的组合。'
+      },
+      actions: [
+        { title: '设一条“70% 信息就行动”的截止线', text: '准备到七成时先做一个最小验证，再继续补全。你会发现，很多答案是在行动里长出来的。' },
+        { title: '每周做一次“无数据表达”', text: '不只说结论，也说一句你的感受或担心。让别人知道你不是冷漠，只是习惯把情绪放在后面。' },
+        { title: '把复盘写成三条以内的动作清单', text: '分析不是目的。每次复盘只留下三个下一步动作，避免“想得很清楚”变成“迟迟不开始”。' }
+      ],
+      positionNote: '破译位不是最喧闹的位置，却是决定比赛下限的位置。你像一台稳定的密码机：只要给你时间和空间，你就能把胜利一点点破译出来。',
+      quote: '你不需要站在光里，也能决定光的走向。'
+    },
+
+    kite: {
+      key: 'kite', index: '02', icon: 'i-kite',
+      name: '自由牵制者', en: 'THE KITER',
+      position: '牵制位 · 求生者', side: 'SURVIVOR',
+      tagline: '不按剧本走，是因为路本来就不止一条。',
+      keywords: ['灵活', '应变', '自由', '破局'],
+      profile: [
+        '你对变化有天然的亲近感。计划对你来说是参考，不是牢笼；当局势突然转向，你往往比别人更快找到新的路线。你相信自己的直觉，也愿意为一点可能性去冒险。你的存在会让团队意识到：这道题，也许还有别的解法。',
+        '自由让你发光，也让你容易在半路被新的风景带走。你并不缺能力，缺的有时是一个愿意停下来的理由。把一件事做完，不会削弱你的自由，反而会让你的天赋有落点。'
+      ],
+      strengths: [
+        { title: '临场反应', text: '计划失效时，你反而更清醒。你能用很小的信息量快速拼出一条可走的路。' },
+        { title: '多线思维', text: '你习惯同时保留几个选项，不轻易把自己锁死在唯一答案里。' },
+        { title: '打破僵局', text: '当所有人都在同一条路上内卷，你往往能看见旁边那扇没被注意到的门。' }
+      ],
+      blindspots: [
+        { title: '收尾困难', text: '开始对你来说很容易，把最后一公里走完却需要额外的意志力。' },
+        { title: '状态波动', text: '你的发挥和情绪、环境高度相关，稳定输出需要刻意设计。' },
+        { title: '规则耐受度低', text: '你讨厌被无效流程困住，但有时规则正是团队协作的底座。' }
+      ],
+      pressure: '你靠换节奏找回主动权：换打法、换路线、换一个自己更熟悉的角度。但有时真正的转机不是再换一条路，而是把眼前这条路走完。逆风局里，给自己设一个“先走完这段”的小目标。',
+      partners: {
+        bestKey: 'control',
+        bestWhy: '有人定方向，你可以放心去试。他负责收束，你负责打开局面；一个给地图，一个画路线。',
+        frictionKey: 'rescue',
+        frictionWhy: '你们都习惯先行动，容易在“谁来负责”上撞车。一个踩油门，另一个也踩油门，记得提前约定刹车的人。'
+      },
+      actions: [
+        { title: '给每个目标写一条“最低完成线”', text: '先定义什么叫做完，再允许自己换道。完成一个普通版本，比拥有十个精彩开头更有价值。' },
+        { title: '在团队里提前同步你的变化', text: '不是先斩后奏，而是“我准备换节奏，原因是……”。让别人跟上你，而不是追赶你。' },
+        { title: '每周留一次“不优化”的时间', text: '允许自己把一件事做到普通但完整。稳定不是自由的反面，它是自由的地基。' }
+      ],
+      positionNote: '牵制位用走位为全队争取时间。你不是在逃跑，而是在把对手拉进你更熟悉的节奏里：每一次转身，都是在替队友多争取一秒。',
+      quote: '你走过的每一步，都在重新定义边界。'
+    },
+
+    rescue: {
+      key: 'rescue', index: '03', icon: 'i-rescue',
+      name: '逆风救援者', en: 'THE RESCUER',
+      position: '救援位 · 求生者', side: 'SURVIVOR',
+      tagline: '别人后退的时候，你刚好向前一步。',
+      keywords: ['勇气', '担当', '行动', '抗压'],
+      profile: [
+        '你身上有一种很直接的力量：事情发生了，就先解决。你很难对眼前的困境袖手旁观，也不习惯把担心藏起来。关键时刻，你愿意站到更危险的位置，因为你相信，总得有人先向前一步。',
+        '你的勇气常常让别人忘记，你也会累。你不需要永远做那个冲在最前面的人。真正的担当，也包括知道什么时候把任务交出去，什么时候让自己被接住。'
+      ],
+      strengths: [
+        { title: '危机行动力', text: '当别人还在犹豫，你已经迈出第一步。你的行动本身就能稳定军心。' },
+        { title: '责任感', text: '你愿意为结果负责，不把难题留给下一个人。' },
+        { title: '抗压能力', text: '越是被逼到墙角，你越能调动出自己都意外的能量。' }
+      ],
+      blindspots: [
+        { title: '逞强', text: '你习惯说“我可以”，有时会忽略自己已经亮起的红灯。' },
+        { title: '过度承担', text: '把别人的责任也扛过来，久了会累，也会让队友失去成长空间。' },
+        { title: '决策过快', text: '冲得太快时，可能没看到更优的解法，或者没听见有人想拉住你。' }
+      ],
+      pressure: '你会本能地冲上去，用行动压过焦虑。记得先看一眼自己的“血量”——救援之前，也要给自己留一条退路。你不需要每一次都做英雄，团队需要的是一个能持续战斗的人。',
+      partners: {
+        bestKey: 'control',
+        bestWhy: '他判断值不值得，你负责把它做到。一个看全局，一个顶前线；有人托底，你的勇气就不必孤注一掷。',
+        frictionKey: 'decode',
+        frictionWhy: '你嫌他慢，他嫌你莽。把节奏对齐之后，你们会成为最稳的前后排：他给你信息，你给他执行。'
+      },
+      actions: [
+        { title: '出手前做一次“责任归属”检查', text: '问自己：这真的是我该扛的吗？如果不是，把它交还给该负责的人。' },
+        { title: '把“我来”换成“谁和我一起”', text: '把个人英雄主义变成团队行动，你会更省力，队友也会更有参与感。' },
+        { title: '给自己设一个恢复仪式', text: '赛后 20 分钟不复盘、不解释，只做能让自己放松的事。恢复也是战斗力的一部分。' }
+      ],
+      positionNote: '救援位是全队的第二次生命。你按下那个按钮的瞬间，改变的不只是一名队友的状态，还有整支队伍对“还能赢”的信心。',
+      quote: '你不是不怕，你只是把别人放在了害怕前面。'
+    },
+
+    support: {
+      key: 'support', index: '04', icon: 'i-support',
+      name: '温柔辅助者', en: 'THE SUPPORT',
+      position: '辅助位 · 求生者', side: 'SURVIVOR',
+      tagline: '你让一支队伍，成为彼此的后背。',
+      keywords: ['共情', '联结', '补位', '耐心'],
+      profile: [
+        '你擅长读懂空气。谁状态不对、谁需要补位、谁的话还没说完，你往往第一个察觉。你不一定站在最中央，却能让一群人真正成为团队。你的温柔不是没有原则，而是一种很高级的力量：让别人愿意信任，也愿意回来。',
+        '你太容易把别人的情绪当成自己的责任。记住，照顾不等于牺牲，共情也不等于没有边界。你先把自己照顾好，你的温柔才会有更长的续航。'
+      ],
+      strengths: [
+        { title: '情绪雷达', text: '你能在别人开口之前察觉变化，并及时给出恰到好处的回应。' },
+        { title: '团队黏合', text: '你让合作不只是分工，而是彼此愿意多走一步的关系。' },
+        { title: '补位意识', text: '你不执着于站在聚光灯下，哪里缺人，你就能出现在哪里。' }
+      ],
+      blindspots: [
+        { title: '边界模糊', text: '你容易把“帮助”变成“包办”，最后累的是自己。' },
+        { title: '回避冲突', text: '为了维持气氛，你可能把真实想法咽回去，让问题悄悄变大。' },
+        { title: '自我忽略', text: '你习惯先照顾别人，等轮到自己时，往往已经没有力气了。' }
+      ],
+      pressure: '你会先稳住大家的情绪，这很重要。但别把“让所有人满意”当成自己的责任——团队的胜利，不需要你一个人成全。逆风局里，你也有权利表达需求、提出反对、暂时离场。',
+      partners: {
+        bestKey: 'rescue',
+        bestWhy: '你的温柔有落点，他的行动有回声。一个托底，一个向前；你们能把“我陪你”变成真正的战斗力。',
+        frictionKey: 'control',
+        frictionWhy: '他习惯拍板，你容易把话咽回去。练习在他安排之前先说出自己的判断，你们会成为更完整的组合。'
+      },
+      actions: [
+        { title: '每天留 15 分钟只照顾自己', text: '不回应任何人，不做“有用”的事。你的需求和其他人的需求一样重要。' },
+        { title: '练习一句不带解释的拒绝', text: '“这次我不方便。”不需要长篇理由。边界越清楚，关系越轻松。' },
+        { title: '把“我都可以”换成“我更倾向于”', text: '让别人知道你的偏好，而不是总是等别人替你决定。' }
+      ],
+      positionNote: '辅助位不抢人头，却让每一次配合都变得顺滑。你像一条看不见的线，把五个人的节奏缝在一起：不喧哗，但缺了你，队伍就会散。',
+      quote: '真正的强大，有时是让别人敢于脆弱。'
+    },
+
+    control: {
+      key: 'control', index: '05', icon: 'i-control',
+      name: '全局执棋者', en: 'THE CONTROLLER',
+      position: '监管位 · 监管者', side: 'HUNTER',
+      tagline: '你看的不是这一秒，而是三步之后。',
+      keywords: ['策略', '决断', '掌控', '领导'],
+      profile: [
+        '你天生会往远处看。别人盯着一台机、一波团，你在意的是整张地图的节奏。你喜欢掌控变量、做取舍，也愿意为结果负责。你的冷静和野心，让你在混乱里像一个坐标：大家不一定同意你，但会下意识看你往哪走。',
+        '掌控感给你安全感，也可能让身边的人失去空间。你不需要把所有变量都攥在手里。真正的高手，敢把一部分舞台交出去，然后依然相信结果。'
+      ],
+      strengths: [
+        { title: '全局视野', text: '你能同时看见资源、时间、位置和人心，把局面当成一张可以经营的棋盘。' },
+        { title: '资源调度', text: '你知道什么时候该投入，什么时候该止损，不把力气浪费在低价值目标上。' },
+        { title: '决断力', text: '信息不完美时，你仍能做出选择，并承担选择的后果。' }
+      ],
+      blindspots: [
+        { title: '控制欲', text: '你容易把“我来定”变成默认设置，让队友失去参与感。' },
+        { title: '耐心不足', text: '对低效和反复解释的容忍度有限，可能显得强势或不近人情。' },
+        { title: '不易示弱', text: '你习惯做那个给出答案的人，很少让别人看见你的不确定。' }
+      ],
+      pressure: '你会迅速重排计划，把局面重新纳入可控范围。但别把所有变量都攥在手里。真正的高手，敢把一部分舞台交出去，然后依然相信结果。逆风局里，先问“谁最了解这个细节”，再决定。',
+      partners: {
+        bestKey: 'support',
+        bestWhy: '他补人心，你定方向。一个让队伍愿意走，一个让队伍知道往哪走；你的理性需要他的温度来落地。',
+        frictionKey: 'rescue',
+        frictionWhy: '你们都强，关键时刻容易互不相让。提前约定“谁在什么局面拍板”，把冲突留在赛前，而不是赛中。'
+      },
+      actions: [
+        { title: '决策前先问“谁最了解这个细节”', text: '把信息权交出去，不等于把决定权交出去。更好的信息，往往来自离现场最近的人。' },
+        { title: '练习在会议中最后一个发言', text: '先听完，再定方向。你的判断不会因为多听三分钟而变慢，却可能因此变准。' },
+        { title: '把“我来定”改成“我们一起定”', text: '保留最终拍板的责任，但让过程变成共同参与。被尊重的队友，执行力会完全不同。' }
+      ],
+      positionNote: '监管位与指挥位共享同一种思维：用全局视野压缩对手的选择，也定义队伍的节奏。你真正的武器不是控制一切，而是知道什么值得控制。',
+      quote: '你看见的从来不是棋盘，而是三步之后的结局。'
+    },
+
+    flex: {
+      key: 'flex', index: '06', icon: 'i-flex',
+      name: '全能自由人', en: 'THE FLEX',
+      position: '自由位 · 全能补位', side: 'FLEX',
+      tagline: '哪里需要你，你就能成为哪一块拼图。',
+      keywords: ['适配', '均衡', '学习', '弹性'],
+      profile: [
+        '你没有一个特别尖锐的标签，因为你的能力分布得很平均：能分析、能应变、能扛事，也能照顾人。你像一块高适配的拼图，放在哪里都能补上缺口。你让团队更有弹性，也让自己拥有更多可能。',
+        '但“哪里都能去”有时也意味着“哪里都不够深”。你并不缺能力，缺的是一个主动选择的方向。先成为某个位置的答案，再去做所有位置的补丁。'
+      ],
+      strengths: [
+        { title: '高适配', text: '你能迅速判断环境需要什么，并调整自己的角色，不轻易被位置限制。' },
+        { title: '学习速度', text: '因为没有太强的路径依赖，你接触新东西时反而更开放、更快。' },
+        { title: '跨界协作', text: '你能理解不同位置的语言，是团队里天然的翻译器和润滑剂。' }
+      ],
+      blindspots: [
+        { title: '定位模糊', text: '什么都能做，可能让机会和标签都从身边溜走。' },
+        { title: '被动接活', text: '你习惯等别人需要你，久而久之，重要但不紧急的自我成长被搁置。' },
+        { title: '选择困难', text: '每个方向都有吸引力，反而让你迟迟不做长期投入。' }
+      ],
+      pressure: '你能跟着局势切换角色，这是优势。但当局势长期混沌，你需要主动选一个方向，而不是一直等别人需要你。平衡不是没有立场，而是保留选择的同时，也敢于承担选择。',
+      partners: {
+        bestKey: 'decode',
+        bestWhy: '他能给你结构和落点，让你在自由里不至于失重。你补他的弹性，他补你的锚点。',
+        frictionKey: 'control',
+        frictionWhy: '你们都擅长看全局，但一个靠适配，一个靠掌控。别在“听谁的”上消耗太久，先约定决策顺序。'
+      },
+      actions: [
+        { title: '选一个主修方向，连续投入 4 周', text: '先练到 80 分。你不需要放弃其他可能，只需要给自己一个可以被识别的标签。' },
+        { title: '接任务时主动说“这次我想负责哪一块”', text: '把“我都可以”换成有方向的表达，别人才能把合适的机会交给你。' },
+        { title: '每月做一次“偏好盘点”', text: '写下哪些事让你充电、哪些只是你擅长。擅长不等于热爱，适配也不等于归属。' }
+      ],
+      positionNote: '自由位不是没有位置，而是任何位置都能被你打出价值。你的任务是找到那个最愿意长期投入的方向，然后把“全能”变成“不可替代”。',
+      quote: '没有固定形状，所以你能成为任何答案。'
+    }
+  };
+
+  /* ---------------------------------------------------------
+     State & helpers
+     --------------------------------------------------------- */
+  const state = {
+    current: 0,
+    answers: new Array(TOTAL).fill(null),
+    review: false,
+    showError: false,
+    result: null
+  };
+  let toastTimer = null;
+  let modalAction = null;
+  let modalLastFocus = null;
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+  const pad = n => String(n).padStart(2, '0');
+  const reduceMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const elements = {
+    head: $('#siteHead'),
+    screens: {
+      home: $('#screen-home'),
+      quiz: $('#screen-quiz'),
+      result: $('#screen-result')
+    },
+    quizExit: $('#quizExit'),
+    headResultActions: $('.head-result-actions'),
+    headEdit: $('#headEdit'),
+    headRestart: $('#headRestart'),
+    progressTrack: $('#progressTrack'),
+    progressFill: $('#progressFill'),
+    answeredTop: $('#answeredTop'),
+    currentNum: $('#currentNum'),
+    questionTag: $('#questionTag'),
+    questionText: $('#questionText'),
+    options: $('#options'),
+    prevBtn: $('#prevBtn'),
+    nextBtn: $('#nextBtn'),
+    answeredHint: $('#answeredHint'),
+    quizCard: $('#quizCard'),
+    reviewBanner: $('#reviewBanner'),
+    reviewFinish: $('#reviewFinish'),
+    questionMap: $('#questionMap'),
+    mobileMap: $('#mobileMap'),
+    ringFill: $('#ringFill'),
+    ringValue: $('#ringValue'),
+    sideAnswered: $('#sideAnswered'),
+    sideGenerate: $('#sideGenerate'),
+    resultContent: $('#resultContent'),
+    editAnswers: $('#editAnswers'),
+    restartBtn: $('#restartBtn'),
+    printBtn: $('#printBtn'),
+    toast: $('#toast'),
+    toastText: $('#toastText'),
+    modal: $('#modal'),
+    modalTitle: $('#modalTitle'),
+    modalText: $('#modalText'),
+    modalConfirm: $('#modalConfirm'),
+    modalCancel: $('#modalCancel')
+  };
+
+  /* Inline answer warning, inserted before options */
+  const inlineAlert = document.createElement('p');
+  inlineAlert.className = 'inline-alert';
+  inlineAlert.hidden = true;
+  inlineAlert.setAttribute('role', 'status');
+  inlineAlert.textContent = '先选择一个最接近你的选项，再继续。';
+  elements.options.parentNode.insertBefore(inlineAlert, elements.options);
+
+  /* ---------------------------------------------------------
+     Toast / modal
+     --------------------------------------------------------- */
+  function toast(message) {
+    elements.toastText.textContent = message;
+    elements.toast.classList.add('is-visible');
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      elements.toast.classList.remove('is-visible');
+    }, 3200);
+  }
+
+  function openModal(config) {
+    modalAction = typeof config.onConfirm === 'function' ? config.onConfirm : null;
+    modalLastFocus = document.activeElement;
+    elements.modalTitle.textContent = config.title || '请确认';
+    elements.modalText.textContent = config.text || '';
+    elements.modalConfirm.textContent = config.confirmText || '确认';
+    elements.modalCancel.textContent = config.cancelText || '取消';
+    elements.modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    window.setTimeout(() => elements.modalCancel.focus(), 30);
+  }
+
+  function closeModal() {
+    elements.modal.hidden = true;
+    document.body.style.overflow = '';
+    modalAction = null;
+    if (modalLastFocus && typeof modalLastFocus.focus === 'function') {
+      try { modalLastFocus.focus({ preventScroll: true }); } catch (_) { /* no-op */ }
+    }
+  }
+
+  function confirmModal() {
+    const action = modalAction;
+    elements.modal.hidden = true;
+    document.body.style.overflow = '';
+    modalAction = null;
+    if (action) action();
+    if (modalLastFocus && typeof modalLastFocus.focus === 'function') {
+      try { modalLastFocus.focus({ preventScroll: true }); } catch (_) { /* no-op */ }
+    }
+  }
+
+  /* ---------------------------------------------------------
+     Screen transitions
+     --------------------------------------------------------- */
+  function showScreen(name) {
+    Object.entries(elements.screens).forEach(([key, screen]) => {
+      screen.hidden = key !== name;
+    });
+    document.body.dataset.screen = name;
+    updateHeader();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    elements.head.classList.toggle('is-scrolled', window.scrollY > 20);
+  }
+
+  function updateHeader() {
+    const screen = document.body.dataset.screen;
+    $$('.home-only').forEach(el => { el.hidden = screen !== 'home'; });
+    elements.quizExit.hidden = screen !== 'quiz';
+    elements.headResultActions.hidden = screen !== 'result';
+  }
+
+  /* ---------------------------------------------------------
+     Quiz flow
+     --------------------------------------------------------- */
+  function resetTestState() {
+    state.current = 0;
+    state.answers = new Array(TOTAL).fill(null);
+    state.review = false;
+    state.showError = false;
+    state.result = null;
+    elements.resultContent.innerHTML = '';
+  }
+
+  function startFresh() {
+    resetTestState();
+    showScreen('quiz');
+    renderQuestion();
+  }
+
+  function goHome() {
+    showScreen('home');
+  }
+
+  function requestExit() {
+    if (state.answers.every(a => a === null)) {
+      resetTestState();
+      goHome();
+      return;
+    }
+    openModal({
+      title: '退出本次测评？',
+      text: '当前作答不会保存，退出后需要从第 1 题重新开始。',
+      confirmText: '退出测评',
+      cancelText: '继续作答',
+      onConfirm: () => {
+        resetTestState();
+        goHome();
+        toast('已退出本次测评。');
+      }
+    });
+  }
+
+  function renderQuestion() {
+    const question = QUIZ[state.current];
+    if (!question) return;
+
+    elements.currentNum.textContent = pad(state.current + 1);
+    elements.questionTag.textContent = question.tag;
+    elements.questionText.textContent = question.text;
+
+    elements.options.innerHTML = '';
+    question.options.forEach((option, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'option' + (state.answers[state.current] === index ? ' is-selected' : '');
+      button.setAttribute('role', 'radio');
+      button.setAttribute('aria-checked', state.answers[state.current] === index ? 'true' : 'false');
+      button.dataset.option = String(index);
+      button.innerHTML = [
+        '<span class="option-letter">', String.fromCharCode(65 + index), '</span>',
+        '<span class="option-text"></span>',
+        '<svg class="icon option-check" aria-hidden="true"><use href="#i-check"></use></svg>'
+      ].join('');
+      button.querySelector('.option-text').textContent = option.text;
+      button.addEventListener('click', () => selectOption(index));
+      elements.options.appendChild(button);
+    });
+
+    elements.reviewBanner.hidden = !state.review;
+    inlineAlert.hidden = !state.showError;
+    elements.options.classList.remove('is-error');
+    if (state.showError) {
+      requestAnimationFrame(() => elements.options.classList.add('is-error'));
+    }
+    refreshProgress();
+
+    if (state.current === TOTAL - 1) {
+      elements.nextBtn.innerHTML = (state.review ? '重新生成结果' : '查看结果') + '<svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>';
+    } else {
+      elements.nextBtn.innerHTML = '下一题<svg class="icon arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>';
+    }
+
+    if (!reduceMotion() && elements.quizCard.animate) {
+      elements.quizCard.animate(
+        [
+          { opacity: 0.55, transform: 'translateY(9px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ],
+        { duration: 330, easing: 'cubic-bezier(.22,.8,.24,1)' }
+      );
+    }
+    if (state.current > 0 || state.review) {
+      // Keep focus and announcements in sync without forcing a scroll jump on first entry.
+      try { elements.questionText.focus({ preventScroll: true }); } catch (_) { /* no-op */ }
+    }
+  }
+
+  function selectOption(index) {
+    state.answers[state.current] = index;
+    state.showError = false;
+    inlineAlert.hidden = true;
+    elements.options.classList.remove('is-error');
+    $$('.option', elements.options).forEach((button, buttonIndex) => {
+      const selected = buttonIndex === index;
+      button.classList.toggle('is-selected', selected);
+      button.setAttribute('aria-checked', selected ? 'true' : 'false');
+    });
+    refreshProgress();
+  }
+
+  function refreshProgress() {
+    const answered = state.answers.filter(a => a !== null).length;
+    const percent = Math.round((answered / TOTAL) * 100);
+    const circumference = 2 * Math.PI * 58;
+
+    elements.progressFill.style.width = percent + '%';
+    elements.progressTrack.setAttribute('aria-valuenow', String(answered));
+    elements.progressTrack.setAttribute('aria-valuemax', String(TOTAL));
+    elements.answeredTop.textContent = '已答 ' + answered + ' / ' + TOTAL;
+    elements.answeredHint.textContent = '已答 ' + answered + ' / ' + TOTAL;
+    elements.sideAnswered.textContent = '已作答 ' + answered + ' / ' + TOTAL;
+    elements.ringValue.textContent = percent + '%';
+    elements.ringFill.setAttribute('stroke-dasharray', (circumference * answered / TOTAL).toFixed(2) + ' ' + circumference.toFixed(2));
+
+    const allAnswered = answered === TOTAL;
+    elements.sideGenerate.hidden = !allAnswered;
+    elements.sideGenerate.textContent = state.review ? '重新生成报告' : '完成并查看结果';
+    elements.reviewBanner.hidden = !state.review;
+
+    renderMaps();
+  }
+
+  function renderMaps() {
+    const maps = [elements.questionMap, elements.mobileMap];
+    maps.forEach(container => {
+      if (!container) return;
+      container.innerHTML = QUIZ.map((_, index) => {
+        const isCurrent = index === state.current;
+        const isAnswered = state.answers[index] !== null;
+        return '<button type="button" class="map-dot' +
+          (isAnswered ? ' is-answered' : '') +
+          (isCurrent ? ' is-current' : '') +
+          '" data-goto="' + index + '" aria-label="第 ' + (index + 1) + ' 题，' + (isAnswered ? '已作答' : '未作答') + '"' +
+          (isCurrent ? ' aria-current="step"' : '') + '>' + pad(index + 1) + '</button>';
+      }).join('');
+    });
+  }
+
+  function goToQuestion(index) {
+    if (index < 0 || index >= TOTAL || index === state.current) return;
+    state.current = index;
+    state.showError = false;
+    renderQuestion();
+    scrollToQuizCard();
+  }
+
+  function scrollToQuizCard() {
+    if (!elements.quizCard) return;
+    const top = elements.quizCard.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top: Math.max(top, 0), behavior: reduceMotion() ? 'auto' : 'smooth' });
+  }
+
+  function showAnswerError() {
+    state.showError = true;
+    inlineAlert.hidden = false;
+    elements.options.classList.remove('is-error');
+    void elements.options.offsetWidth;
+    elements.options.classList.add('is-error');
+    elements.options.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'center' });
+  }
+
+  function nextQuestion() {
+    if (state.answers[state.current] === null) {
+      showAnswerError();
+      return;
+    }
+    if (state.current < TOTAL - 1) {
+      state.current += 1;
+      state.showError = false;
+      renderQuestion();
+      scrollToQuizCard();
+      return;
+    }
+    finishTest();
+  }
+
+  function prevQuestion() {
+    if (state.current <= 0) {
+      toast('已经是第一题了。');
+      return;
+    }
+    state.current -= 1;
+    state.showError = false;
+    renderQuestion();
+    scrollToQuizCard();
+  }
+
+  function finishTest() {
+    const unanswered = state.answers.findIndex(a => a === null);
+    if (unanswered !== -1) {
+      state.current = unanswered;
+      state.showError = true;
+      renderQuestion();
+      scrollToQuizCard();
+      return;
+    }
+    const result = calculateResult();
+    state.result = result;
+    state.review = false;
+    renderResult(result);
+    showScreen('result');
+    window.setTimeout(() => {
+      try { $('#resultTitle').focus({ preventScroll: true }); } catch (_) { /* no-op */ }
+    }, 60);
+  }
+
+  /* ---------------------------------------------------------
+     Calculation
+     --------------------------------------------------------- */
+  function calculateResult() {
+    const scores = Object.fromEntries(DIM_KEYS.map(key => [key, 0]));
+    state.answers.forEach((optionIndex, questionIndex) => {
+      if (optionIndex === null) return;
+      const option = QUIZ[questionIndex].options[optionIndex];
+      if (!option) return;
+      scores[option.main] += 2;
+      scores[option.sub] += 1;
+    });
+
+    const sorted = DIMENSIONS.slice().sort((a, b) => {
+      const difference = scores[b.key] - scores[a.key];
+      if (difference !== 0) return difference;
+      return DIM_KEYS.indexOf(a.key) - DIM_KEYS.indexOf(b.key);
+    });
+    const top = sorted[0];
+    const second = sorted[1];
+    const gap = scores[top.key] - scores[second.key];
+    const balanced = gap <= 2;
+    const type = TYPES[balanced ? 'flex' : top.key];
+    const percent = Object.fromEntries(DIMENSIONS.map(d => {
+      const key = d.key;
+      const pct = DIM_MAX[key] ? Math.round((scores[key] / DIM_MAX[key]) * 100) : 0;
+      return [key, Math.max(0, Math.min(100, pct))];
+    }));
+    return { scores, sorted, top, second, gap, balanced, type, percent };
+  }
+
+  /* ---------------------------------------------------------
+     Result rendering
+     --------------------------------------------------------- */
+  function radarSVG(result) {
+    const cx = 210;
+    const cy = 205;
+    const radius = 134;
+    const count = DIMENSIONS.length;
+    const angle = index => (-Math.PI / 2) + (index * 2 * Math.PI / count);
+    const point = (index, r) => [
+      cx + Math.cos(angle(index)) * r,
+      cy + Math.sin(angle(index)) * r
+    ];
+    const pointString = (r) => DIMENSIONS.map((_, index) => point(index, r).map(v => v.toFixed(1)).join(',')).join(' ');
+
+    const rings = [0.25, 0.5, 0.75, 1].map(f => '<polygon class="radar-grid" points="' + pointString(radius * f) + '"></polygon>').join('');
+    const axes = DIMENSIONS.map((_, index) => {
+      const [x, y] = point(index, radius);
+      return '<line class="radar-axis" x1="' + cx + '" y1="' + cy + '" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '"></line>';
+    }).join('');
+    const values = DIMENSIONS.map((d, index) => {
+      const [x, y] = point(index, Math.max(radius * result.percent[d.key] / 100, 2));
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+    const dots = DIMENSIONS.map((d, index) => {
+      const [x, y] = point(index, Math.max(radius * result.percent[d.key] / 100, 2));
+      return '<circle class="radar-dot" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="2.3"></circle>';
+    }).join('');
+    const labels = DIMENSIONS.map((d, index) => {
+      const [x, y] = point(index, radius + 32);
+      const anchor = Math.abs(x - cx) < 8 ? 'middle' : (x > cx ? 'start' : 'end');
+      const nameY = anchor === 'middle' ? y + 2 : y + 4;
+      return '<text class="radar-label" x="' + x.toFixed(1) + '" y="' + nameY.toFixed(1) + '" text-anchor="' + anchor + '">' + d.name + '</text>' +
+             '<text class="radar-label-en" x="' + x.toFixed(1) + '" y="' + (nameY + 13).toFixed(1) + '" text-anchor="' + anchor + '">' + pad(result.percent[d.key]) + '%</text>';
+    }).join('');
+    const summary = DIMENSIONS.map(d => d.name + ' ' + result.percent[d.key] + '%').join('，');
+
+    return '<svg class="radar-svg" viewBox="0 0 420 420" role="img" aria-label="五维倾向雷达图：' + summary + '">' +
+      '<g>' + rings + axes + '</g>' +
+      '<polygon class="radar-value" points="' + values + '"></polygon>' +
+      dots +
+      labels +
+      '</svg>';
+  }
+
+  function buildReview() {
+    return '<div class="review-list">' + QUIZ.map((question, index) => {
+      const answerIndex = state.answers[index];
+      const option = answerIndex === null ? null : question.options[answerIndex];
+      return '<div class="review-item">' +
+        '<span class="q-num">Q' + pad(index + 1) + '</span>' +
+        '<div>' +
+          '<p class="q-text">' + question.text + '</p>' +
+          '<p class="q-answer">' + (option
+            ? '<b>' + String.fromCharCode(65 + answerIndex) + '</b><span>' + option.text + '</span>'
+            : '<b>—</b><span>未作答</span>') + '</p>' +
+        '</div>' +
+      '</div>';
+    }).join('') + '</div>';
+  }
+
+  function renderResult(result) {
+    const type = result.type;
+    const isFlex = type.key === 'flex';
+    const topPercent = result.percent[result.top.key];
+    const secondType = TYPES[result.second.key];
+    const thirdType = TYPES[result.sorted[2].key];
+    const partnerBest = TYPES[type.partners.bestKey];
+    const partnerFriction = TYPES[type.partners.frictionKey];
+    const highlighted = new Set([result.top.key, result.second.key]);
+    if (isFlex) {
+      highlighted.add(result.sorted[2].key);
+    }
+
+    const emblem = '<div class="result-emblem" aria-hidden="true">' +
+      '<svg class="emblem-ring" viewBox="0 0 176 176">' +
+        '<defs><path id="emblemTextPath" d="M88,88 m-67,0 a67,67 0 1,1 134,0 a67,67 0 1,1 -134,0"></path></defs>' +
+        '<circle cx="88" cy="88" r="82" fill="none" stroke="rgba(223,197,141,.22)" stroke-width="1"></circle>' +
+        '<circle cx="88" cy="88" r="76" fill="none" stroke="rgba(223,197,141,.38)" stroke-width=".7" stroke-dasharray="1 5"></circle>' +
+        '<text><textPath href="#emblemTextPath" startOffset="0%">IVL PERSONA · FIELD REPORT · NO.' + type.index + ' · </textPath></text>' +
+      '</svg>' +
+      '<div class="emblem-inner"></div>' +
+      '<svg class="icon emblem-icon" aria-hidden="true"><use href="#' + type.icon + '"></use></svg>' +
+      '<span class="emblem-pos">' + type.side + '</span>' +
+    '</div>';
+
+    const hero = '<section class="result-hero">' +
+      emblem +
+      '<div class="result-copy">' +
+        '<p class="result-kicker">YOUR PERSONA / 你的赛场人格</p>' +
+        '<p class="result-position">' + type.position + '</p>' +
+        '<h1 class="result-name" id="resultTitle" tabindex="-1">' + type.name + '</h1>' +
+        '<p class="result-en">' + type.en + '</p>' +
+        '<p class="result-tagline">“' + type.tagline + '”</p>' +
+        '<div class="result-tags">' + type.keywords.map(word => '<span>' + word + '</span>').join('') + '</div>' +
+      '</div>' +
+      '<div class="result-index">' +
+        '<p class="index-label">' + (isFlex ? 'DUAL CORE' : 'PRIMARY SIGNAL') + '</p>' +
+        '<div class="score">' + topPercent + '<small>%</small></div>' +
+        '<p>' + (isFlex ? result.top.name + ' × ' + result.second.name : result.top.name + '维度 · 全场最高') + '</p>' +
+        '<div class="secondary">' + (isFlex ? '第三倾向' : '副倾向') + '<strong>' + (isFlex ? thirdType.name : secondType.name) + '</strong></div>' +
+      '</div>' +
+    '</section>';
+
+    const portrait = '<section class="result-section">' +
+      '<div class="result-section-head">' +
+        '<div class="section-label"><span class="num">01</span>THE PORTRAIT</div>' +
+        '<div><h2>你的赛场<em>画像</em></h2><p>不是给你一个答案，而是把你已经拥有的倾向说清楚。</p></div>' +
+      '</div>' +
+      '<div class="profile-text">' + type.profile.map(p => '<p>' + p + '</p>').join('') + '</div>' +
+    '</section>';
+
+    const bars = DIMENSIONS.map((dimension, index) => {
+      const score = result.scores[dimension.key];
+      const pct = result.percent[dimension.key];
+      const isTop = highlighted.has(dimension.key);
+      return '<div class="dim-row">' +
+        '<div class="dim-bar-top">' +
+          '<span class="dim-bar-name"><span class="idx">' + pad(index + 1) + '</span>' + dimension.name + '<small>' + dimension.en + '</small></span>' +
+          '<span class="dim-bar-score"><b>' + score + '</b>/ ' + DIM_MAX[dimension.key] + ' · ' + pct + '%</span>' +
+        '</div>' +
+        '<div class="dim-bar"><span class="dim-bar-fill' + (isTop ? ' is-top' : '') + '" data-width="' + pct + '"></span></div>' +
+        '<p class="dim-bar-note">' + dimension.tag + '</p>' +
+      '</div>';
+    }).join('');
+
+    const spectrum = '<section class="result-section">' +
+      '<div class="result-section-head">' +
+        '<div class="section-label"><span class="num">02</span>THE SPECTRUM</div>' +
+        '<div><h2>五维<em>赛场频谱</em></h2><p>这张图不是能力排名，而是你在这套情境里更常调用的五种信号。最高处是你的主倾向，相邻的高点则是你的辅助气质。</p></div>' +
+      '</div>' +
+      '<div class="spectrum">' +
+        '<div class="radar-wrap">' + radarSVG(result) + '</div>' +
+        '<div>' +
+          '<div class="dim-bars">' + bars + '</div>' +
+          '<p class="spectrum-note">倾向指数 = 维度得分 ÷ 该维度满分（' + DIM_MAX.decode + '）。它只在本测试内部表示相对偏好，不是人群百分位，也不等于能力高低。</p>' +
+        '</div>' +
+      '</div>' +
+    '</section>';
+
+    const insights = '<section class="result-section">' +
+      '<div class="result-section-head">' +
+        '<div class="section-label"><span class="num">03</span>EDGE &amp; SHADOW</div>' +
+        '<div><h2>你的<em>高光</em>，与<em>盲区</em></h2><p>同一枚硬币的两面。优势用对了是武器，用过头了就会变成消耗。</p></div>' +
+      '</div>' +
+      '<div class="insight-grid">' +
+        '<div class="insight-panel">' +
+          '<h3><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>核心优势</h3>' +
+          '<ul>' + type.strengths.map(item => '<li><strong>' + item.title + '</strong>' + item.text + '</li>').join('') + '</ul>' +
+        '</div>' +
+        '<div class="insight-panel">' +
+          '<h3><svg class="icon" aria-hidden="true"><use href="#i-wind"></use></svg>潜在盲区</h3>' +
+          '<ul>' + type.blindspots.map(item => '<li><strong>' + item.title + '</strong>' + item.text + '</li>').join('') + '</ul>' +
+        '</div>' +
+      '</div>' +
+      '<div style="margin-top:12px" class="pressure-panel">' +
+        '<svg class="icon" aria-hidden="true"><use href="#i-wind"></use></svg>' +
+        '<div><p class="p-label">UNDER PRESSURE / 逆风局说明书</p><p>' + type.pressure + '</p></div>' +
+      '</div>' +
+    '</section>';
+
+    const chemistry = '<section class="result-section">' +
+      '<div class="result-section-head">' +
+        '<div class="section-label"><span class="num">04</span>CHEMISTRY</div>' +
+        '<div><h2>和谁<em>合拍</em>，和谁<em>磨合</em></h2><p>人格没有好坏，组合才有。理解差异，比寻找“完美队友”更有用。</p></div>' +
+      '</div>' +
+      '<div class="partner-grid">' +
+        '<article class="partner-card is-good">' +
+          '<p class="partner-kind"><span class="dot"></span>BEST CHEMISTRY / 最佳拍档</p>' +
+          '<p class="partner-name">' + partnerBest.name + '</p>' +
+          '<p class="partner-pos">' + partnerBest.position + '</p>' +
+          '<p>' + type.partners.bestWhy + '</p>' +
+        '</article>' +
+        '<article class="partner-card is-friction">' +
+          '<p class="partner-kind"><span class="dot"></span>NEEDS CALIBRATION / 需要磨合</p>' +
+          '<p class="partner-name">' + partnerFriction.name + '</p>' +
+          '<p class="partner-pos">' + partnerFriction.position + '</p>' +
+          '<p>' + type.partners.frictionWhy + '</p>' +
+        '</article>' +
+      '</div>' +
+    '</section>';
+
+    const actions = '<section class="result-section">' +
+      '<div class="result-section-head">' +
+        '<div class="section-label"><span class="num">05</span>NEXT ROUND</div>' +
+        '<div><h2>下一局，<em>这样打</em></h2><p>三条具体动作，不需要全部做到。先挑一条，在下一场比赛或下一次合作里试一试。</p></div>' +
+      '</div>' +
+      '<ol class="actions-list">' + type.actions.map((item, index) =>
+        '<li class="action-row"><span class="action-num">' + pad(index + 1) + '</span><div><h4>' + item.title + '</h4><p>' + item.text + '</p></div></li>'
+      ).join('') + '</ol>' +
+      '<div class="position-note" style="margin-top:26px">' +
+        '<p class="position-label">POSITION MANUAL / 你的位置说明书</p>' +
+        '<p class="position-quote">' + type.positionNote + '</p>' +
+        '<p class="position-label" style="margin-top:22px">SIGNATURE LINE / 人格签</p>' +
+        '<p class="position-quote" style="color:var(--gold-deep);font-size:clamp(16px,1.7vw,20px)">“' + type.quote + '”</p>' +
+      '</div>' +
+      '<p class="result-endnote">这份报告由你的 ' + TOTAL + ' 个选择实时计算，不含随机项。修改答案后会重新计算，而不是保留旧结果。本结果为原创娱乐性自评，不构成心理诊断、医疗建议或对真实竞技水平的预测；与《第五人格》、IVL 官方及任何真实选手无关。</p>' +
+      '<div class="result-bottom-actions">' +
+        '<button class="btn btn-gold" type="button" data-result-edit>修改答案并重新计算</button>' +
+        '<button class="btn btn-ghost" type="button" data-result-restart>重新测试</button>' +
+        '<button class="btn btn-ghost" type="button" data-result-copy><svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>复制结果摘要</button>' +
+      '</div>' +
+    '</section>';
+
+    const review = '<details class="review-panel">' +
+      '<summary><span>查看 ' + TOTAL + ' 道题的作答回顾</span><svg class="icon summary-arrow" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>' +
+      buildReview() +
+    '</details>';
+
+    elements.resultContent.innerHTML = hero + portrait + spectrum + insights + chemistry + actions + review;
+
+    requestAnimationFrame(() => {
+      $$('.dim-bar-fill', elements.resultContent).forEach(fill => {
+        fill.style.width = (fill.dataset.width || '0') + '%';
+      });
+    });
+    bindResultActions();
+  }
+
+  function bindResultActions() {
+    const edit = $('[data-result-edit]', elements.resultContent);
+    const restart = $('[data-result-restart]', elements.resultContent);
+    const copy = $('[data-result-copy]', elements.resultContent);
+    if (edit) edit.addEventListener('click', editAnswers);
+    if (restart) restart.addEventListener('click', confirmRestart);
+    if (copy) copy.addEventListener('click', copySummary);
+  }
+
+  function editAnswers() {
+    if (!state.result) return;
+    state.review = true;
+    state.current = 0;
+    state.showError = false;
+    renderQuestion();
+    showScreen('quiz');
+    toast('修改模式：调整答案后，点击“重新生成结果”。');
+  }
+
+  function confirmRestart() {
+    openModal({
+      title: '重新测试？',
+      text: '当前答案与报告会被清空，从第 1 题重新开始。',
+      confirmText: '重新开始',
+      cancelText: '保留报告',
+      onConfirm: () => {
+        startFresh();
+      }
+    });
+  }
+
+  function buildSummaryText() {
+    if (!state.result) return '';
+    const result = state.result;
+    const type = result.type;
+    const lines = [
+      'IVL PERSONA · 我的赛场人格',
+      type.name + '（' + type.en + '）',
+      type.position,
+      '“' + type.tagline + '”',
+      '',
+      ...DIMENSIONS.map(d => d.name + ' ' + result.percent[d.key] + '%'),
+      '',
+      result.balanced ? '双核倾向：' + result.top.name + ' × ' + result.second.name : '主倾向：' + result.top.name + '维度',
+      '—— 原创娱乐性自评，非官方，非心理诊断。'
+    ];
+    return lines.join('\n');
+  }
+
+  function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.top = '-1000px';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    let success = false;
+    try { success = document.execCommand('copy'); } catch (_) { success = false; }
+    document.body.removeChild(textarea);
+    return success;
+  }
+
+  function copySummary() {
+    const text = buildSummaryText();
+    if (!text) return;
+    const done = () => toast('结果摘要已复制，可以分享给队友了。');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => {
+        if (fallbackCopy(text)) done();
+        else toast('复制失败，请手动选择报告文字。');
+      });
+    } else if (fallbackCopy(text)) {
+      done();
+    } else {
+      toast('复制失败，请手动选择报告文字。');
+    }
+  }
+
+  /* ---------------------------------------------------------
+     Bindings
+     --------------------------------------------------------- */
+  function bindEvents() {
+    $$('[data-start]').forEach(button => button.addEventListener('click', startFresh));
+    $('.brand').addEventListener('click', event => {
+      const screen = document.body.dataset.screen;
+      if (screen === 'quiz') {
+        event.preventDefault();
+        requestExit();
+      } else if (screen === 'result') {
+        event.preventDefault();
+        goHome();
+      }
+    });
+    elements.quizExit.addEventListener('click', requestExit);
+    elements.prevBtn.addEventListener('click', prevQuestion);
+    elements.nextBtn.addEventListener('click', nextQuestion);
+    elements.reviewFinish.addEventListener('click', finishTest);
+    elements.sideGenerate.addEventListener('click', finishTest);
+
+    const mapHandler = event => {
+      const target = event.target.closest('[data-goto]');
+      if (!target) return;
+      const index = Number(target.dataset.goto);
+      if (Number.isInteger(index)) goToQuestion(index);
+    };
+    elements.questionMap.addEventListener('click', mapHandler);
+    elements.mobileMap.addEventListener('click', mapHandler);
+
+    elements.editAnswers.addEventListener('click', editAnswers);
+    elements.headEdit.addEventListener('click', editAnswers);
+    elements.restartBtn.addEventListener('click', confirmRestart);
+    elements.headRestart.addEventListener('click', confirmRestart);
+    elements.printBtn.addEventListener('click', () => window.print());
+
+    elements.modalCancel.addEventListener('click', closeModal);
+    elements.modalConfirm.addEventListener('click', confirmModal);
+    $('[data-modal-close]', elements.modal).addEventListener('click', closeModal);
+    elements.modal.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModal();
+      }
+      if (event.key === 'Tab') {
+        const focusables = $$('button', elements.modal).filter(button => !button.disabled && button.offsetParent !== null);
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      elements.head.classList.toggle('is-scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------
+     Init
+     --------------------------------------------------------- */
+  function init() {
+    $$('.quiz-count .total').forEach(el => { el.textContent = '/' + TOTAL; });
+    elements.progressTrack.setAttribute('aria-valuemax', String(TOTAL));
+    renderMaps();
+    bindEvents();
+    showScreen('home');
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
